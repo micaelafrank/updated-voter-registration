@@ -192,7 +192,7 @@ label{
 
 .voterContainerBlack{
   padding: 15px 10px;
-  border: 1px solid black;
+  border: .8px solid black;
   width: 300px;
   display: inline-grid;
   align-items: center;
@@ -202,7 +202,7 @@ label{
 .voterContainerRed {
   padding: 15px 10px;
   display: inline-grid;
-  border: 1px solid red;
+  border: .8px solid red;
   width: 300px;
   align-items: center;
   text-align: center;
@@ -338,11 +338,14 @@ label{
 }
 
 .searchBarContainer{
-  display: inline-block;
-  width: 94%;
+  width: 80%;
   border: 0.8px solid black;
   background-color: rgb(238, 244, 254);
-  padding: 10px;
+  padding: 5px;
+  margin-left: auto;  
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .searchbarForm {
@@ -351,11 +354,33 @@ label{
   flex-direction: column;
   justify-content: center;
   align-items: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px 15px;
 }
 
 .searchbarForm h4 {
   padding-left: 4px;
-  font-size: 18px;
+  font-size: 22px;
+}
+
+#row1 input{
+  width: 60%;
+  margin-right: 25px;
+}
+
+#row2, #row1{
+  width: 60%;
+}
+
+#row2 input {
+  width: 30%;
+  margin-right: 25px;
+}
+
+#row1{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .searchbarForm input {
@@ -370,9 +395,9 @@ label{
 
 .searchbarForm button {
   background: white;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 3px;
-  width: 70px;
+  width: 100px;
   height: 2.5rem;
 }
 

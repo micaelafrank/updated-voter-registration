@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import VoterList from "./VoterList";
+// import GridColSizesExample from "./GridColSizesExample";
 import Search from "./Search";
 
 function VoterPage({ voters, setVoters }) {
@@ -23,7 +24,9 @@ function VoterPage({ voters, setVoters }) {
     );
 
     return (
-        <main>
+        <main style={{paddingTop: "35px", paddingBottom: "30px"}}>
+            <h4 style={{fontSize: "36px", textAlign: "center"}}>Am I Registered?</h4>
+            {/* <GridColSizesExample /> */}
             <Search search={search} onSearch={setSearch} />
             {/* <VoterList voters={searchedNames} voters={voters} setVoters={setVoters} searchVoters={searchVoters} deleteVoter={deleteVoter} /> */}
             <VoterList voters={searchedNames} handleDelete={deleteVoter} />
