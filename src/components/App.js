@@ -1,16 +1,16 @@
 
 import RegistrationForm from './RegistrationForm'
-import VoterList from './VoterList'
+import VoterPage from './VoterPage'
 import {useEffect, useState} from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Search from './Search'
+// import Search from './Search'
 import CandidateList from './CandidateList'
 import Home from './Home'
 import NavBar from './NavBar'
 
 
 function App(){
-  const [search, setUserSearch] = useState("")
+  // const [search, setUserSearch] = useState("")
   const [voters, setVoters] = useState([])
   const [candidates, setCandidates] = useState([])
 
@@ -28,27 +28,28 @@ function App(){
   }, [])
   console.log(candidates)
 
-  function deleteVoter(id){
-    const updatedList = voters.filter((voter) => voter.id !== id);
-    setVoters(updatedList);
-  }
-
-  function addNewVoter(newVoter){
+  function addNewVoter(newVoter) {
     const updatedList = [...voters, newVoter];
     setVoters(updatedList)
   }
-  
-  const searchVoters = voters.filter((voter) => {
-    return (voter.first.toLowerCase().includes(search.toLowerCase()) || voter.last.toLowerCase().includes(search.toLowerCase())) 
-  })
+
+  // function deleteVoter(id){
+  //   const updatedList = voters.filter((voter) => voter.id !== id);
+  //   setVoters(updatedList);
+  // }
+
+  // const searchVoters = voters.filter((voter) => {
+  //   return (voter.first.includes(search)) || (voter.last.includes(search)) 
+  // })
 
   return (
     <div>
         <NavBar/>
           <Switch>
           <Route path="/voters">
-            <Search search={search} handleSearch={setUserSearch}/>
-            <VoterList setVoters={setVoters} searchVoters={searchVoters} voters={voters} deleteVoter={deleteVoter}/>
+            {/* <Search search={search} handleSearch={setUserSearch}/>
+            <VoterList search={search} voters={voters} setVoters={setVoters} searchVoters={searchVoters} deleteVoter={deleteVoter}/> */}
+            <VoterPage voters={voters} setVoters={setVoters} />
           </Route>
           <Route path="/candidates">
             <CandidateList candidates={candidates}/> 

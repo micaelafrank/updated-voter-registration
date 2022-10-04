@@ -28,7 +28,7 @@ function Voter({ id, isActive, firstName, lastName, party, postalCode, password,
         <div className={isActive ? "voterContainerBlack" : "voterContainerRed"}>
             {/* <p style={{ fontSize:"18px", fontWeight:"bold" }}>{firstName}</p> */}
             <p style={{ fontSize: "18px", fontWeight: "bold" }}>{initial}. {lastName}</p>
-            <p>{party ? party.party_name : 'Neutral'}</p>
+            <p><span style={{fontWeight: "bold"}}>Party:</span>{party ? party.party_name : 'Neutral'}</p>
             <p style={{ fontWeight: "bold", fontSize: "13px", color: isActive ? "black" : "red" }}>Voter Status: {isActive ? "ACTIVE" : "INACTIVE"}</p>
             <p>{postalCode}</p>
             {/* <Popup trigger={<button> Delete Voter Record</button>} position="right center">

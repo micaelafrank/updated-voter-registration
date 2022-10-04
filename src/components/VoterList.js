@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import Voter from "./Voter";
 
-function VoterList({ voters, setVoters, searchVoters, setUserSearch, deleteVoter }) {
+function VoterList({ voters, setVoters, searchVoters, deleteVoter }) {
+  // const [chosenLetter, setLetter] = useState("All");
 
   const listOfVoters = voters.map((voter) => (
       <Voter 
@@ -16,7 +17,7 @@ function VoterList({ voters, setVoters, searchVoters, setUserSearch, deleteVoter
       party={voter.party}
       password={voter.password}
       postalCode={voter.postalCode}
-      handleSearch={setUserSearch}
+      // handleSearch={setUserSearch}
       deleteVoter={deleteVoter}
       />
     ))
