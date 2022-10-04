@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 // import Popup from 'reactjs-popup';
 
-function Voter({ id, name, party, postalCode, password, deleteVoter }){
-     const[isActive,setActive] = useState(true);
+function Voter({ id, firstName, lastName, party, postalCode, password, deleteVoter }){
      const [formName, setName] = useState("")
      const [formPassword, setPassword] = useState("")
+     const [isActive, setActive] = useState(true);
+
+     const initial = firstName[0];
 
     function handleSubmit(e){
         e.preventDefault()
-        if(name===formName && password===formPassword){
+        if(firstName===formName && password===formPassword){
             handleDelete();
         } else{
             e.target.reset();
@@ -23,10 +25,10 @@ function Voter({ id, name, party, postalCode, password, deleteVoter }){
     }
 
     useEffect(() => {
-    if(id%13===0){
-        setActive(false); 
-    }
-    },[])
+        if (id % 13 === 0) {
+            setActive(false);
+        }
+    }, [])
 
     console.log(party)
 
@@ -46,7 +48,8 @@ function Voter({ id, name, party, postalCode, password, deleteVoter }){
     return (
         <div className={`gridItem`}>
         <div className={isActive ? "voterContainerBlack" : "voterContainerRed"}>
-            <p style={{ fontSize:"18px", fontWeight:"bold" }}>{name}</p>
+            {/* <p style={{ fontSize:"18px", fontWeight:"bold" }}>{firstName}</p> */}
+            <p style={{ fontSize: "18px", fontWeight: "bold" }}>{initial}. {lastName}</p>
             <p>{party ? party.party_name : 'Neutral'}</p>
             <p style={{ fontWeight: "bold", fontSize: "13px", color: isActive ? "black" : "red" }}>Voter Status: {isActive ? "ACTIVE" : "INACTIVE"}</p>
             <p>{postalCode}</p>

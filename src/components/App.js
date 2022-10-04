@@ -39,7 +39,7 @@ function App(){
   }
   
   const searchVoters = voters.filter((voter) => {
-    return (voter.name.toLowerCase().includes(search.toLowerCase()))
+    return (voter.first.toLowerCase().includes(search.toLowerCase()) || voter.last.toLowerCase().includes(search.toLowerCase())) 
   })
 
   return (

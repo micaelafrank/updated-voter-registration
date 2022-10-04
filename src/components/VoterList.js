@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Voter from "./Voter";
 
 function VoterList({ voters, setVoters, searchVoters, setUserSearch, deleteVoter }) {
-    const listOfVoters = voters.map((voter) => (
+
+  const listOfVoters = voters.map((voter) => (
       <Voter 
       key={voter.id}
       id={voter.id}
-      name={voter.name}
+      lastName={voter.last}
+      firstName={voter.first}
       voters={voters}
       setVoters={setVoters}
       searchVoters={searchVoters}
@@ -18,10 +20,11 @@ function VoterList({ voters, setVoters, searchVoters, setUserSearch, deleteVoter
       />
     ))
   
+
     return (
       <React.Fragment>
         <section className="voterGridContainer">
-            {listOfVoters}
+          {listOfVoters}
         </section>
       </React.Fragment>
     );
