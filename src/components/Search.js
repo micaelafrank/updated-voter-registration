@@ -10,16 +10,21 @@ function Search({ onSearch }) {
   }
 
   return (
-    <form className="searchbar" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        id="search"
-        placeholder="search free stuff"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button type="submit">🔍</button>
-    </form>
+    <div className="searchBarContainer">
+      <form className="searchbarForm" onSubmit={handleSubmit}>
+        <h4>View Voter Information</h4>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <input
+            type="text"
+            id="search"
+            placeholder="Filter by first or last name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button type="submit">🔍</button>
+      </div>
+      </form>
+    </div>
   );
 }
 

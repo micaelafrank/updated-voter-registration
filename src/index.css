@@ -92,7 +92,7 @@ h3, h2{
   line-height: 1;
 }
 
-form {
+#newVoterForm {
   border: 6px solid rgb(197, 231, 242);
   padding: 4em;
   display: flex;
@@ -335,4 +335,53 @@ label{
   text-shadow: none;
   font-size: 22px;
   line-height: 1.2;
+}
+
+.searchBarContainer{
+  display: inline-block;
+  width: 94%;
+  border: 0.8px solid black;
+  background-color: rgb(238, 244, 254);
+  padding: 10px;
+}
+
+.searchbarForm {
+  /* margin: 0 1rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+.searchbarForm h4 {
+  padding-left: 4px;
+  font-size: 18px;
+}
+
+.searchbarForm input {
+  font-size: .9rem;
+  height: 2.5rem;
+  width: 50%;
+  /* margin-right: 0.5rem; */
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding-left: 0.7rem;
+}
+
+.searchbarForm button {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 70px;
+  height: 2.5rem;
+}
+
+#moreInfoButton{
+  height: 30px;
+  font-size: 12px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }

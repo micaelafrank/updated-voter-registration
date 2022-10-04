@@ -47,7 +47,7 @@ function RegistrationForm({ addNewVoter }) {
             <h1 style={{paddingTop: "50px"}} className="formHeading2">REGISTER</h1>
             <h1 className="formHeading2">REGISTER</h1>
             <h1 className="formHeading2">REGISTER</h1>
-            <form onSubmit={handleSubmit}>
+            <form id="newVoterForm" onSubmit={handleSubmit}>
               <label style={{paddingTop: "0"}}>NAME:</label>
               <input required className="inputText" placeholder="First Name, Last Name" name="name" value={formData.name} onChange={handleChange}/>
               <label>ADDRESS:</label>

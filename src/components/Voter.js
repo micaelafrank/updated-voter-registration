@@ -31,6 +31,7 @@ function Voter({ id, isActive, firstName, lastName, party, postalCode, password,
             <p><span style={{fontWeight: "bold"}}>Party:</span>{party ? party.party_name : 'Neutral'}</p>
             <p style={{ fontWeight: "bold", fontSize: "13px", color: isActive ? "black" : "red" }}>Voter Status: {isActive ? "ACTIVE" : "INACTIVE"}</p>
             <p>{postalCode}</p>
+            <button id="moreInfoButton">Voter Details</button>
             {/* <Popup trigger={<button> Delete Voter Record</button>} position="right center">
                 <form className="popuptext" onSubmit={handleSubmit}>
                     <p>To deactivate your registration, please confirm your full name and login password.</p>
