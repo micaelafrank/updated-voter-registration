@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import Popup from 'reactjs-popup';
 
-function Voter({ id, firstName, lastName, party, postalCode, password, deleteVoter }){
+function Voter({ id, isActive, firstName, lastName, party, postalCode, password, deleteVoter }){
      const [formName, setName] = useState("")
      const [formPassword, setPassword] = useState("")
-     const [isActive, setActive] = useState(true);
 
      const initial = firstName[0];
 
@@ -23,27 +22,6 @@ function Voter({ id, firstName, lastName, party, postalCode, password, deleteVot
         })
         deleteVoter(id);
     }
-
-    useEffect(() => {
-        if (id % 13 === 0) {
-            setActive(false);
-        }
-    }, [])
-
-    console.log(party)
-
-    // const findRow = (voter) => {
-    //     let classAssigned;
-    //     if(voter.key%2===0 && voter.key%3 !== 0){
-    //         classAssigned = row2;
-    //     }
-    //     else if(voter.key%3===0){
-    //         classAssigned = row3;
-    //     }
-    //     else{
-    //         classAssigned = row1;
-    //     }
-    // }
 
     return (
         <div className={`gridItem`}>

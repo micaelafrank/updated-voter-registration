@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Voter from "./Voter";
 
 function VoterList({ voters, setVoters, searchVoters, setUserSearch, deleteVoter }) {
@@ -10,6 +10,7 @@ function VoterList({ voters, setVoters, searchVoters, setUserSearch, deleteVoter
       lastName={voter.last}
       firstName={voter.first}
       voters={voters}
+      isActive={voter.isActive}
       setVoters={setVoters}
       searchVoters={searchVoters}
       party={voter.party}
@@ -19,8 +20,7 @@ function VoterList({ voters, setVoters, searchVoters, setUserSearch, deleteVoter
       deleteVoter={deleteVoter}
       />
     ))
-  
-
+    
     return (
       <React.Fragment>
         <section className="voterGridContainer">
