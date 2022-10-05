@@ -47,6 +47,11 @@ function RegistrationForm({ addNewVoter }) {
             <h1 style={{paddingTop: "50px"}} className="formHeading2">REGISTER</h1>
             <h1 className="formHeading2">REGISTER</h1>
             <h1 className="formHeading2">REGISTER</h1>
+            <p>If you have already registered in New York, you are permanently registered unless:</p>
+            <ul>
+              <li>You moved your residence outside the city or county in which you were registered.</li>
+              <li>You are an inactive voter who has not voted in any election, including two consecutive Federal Elections, and have not confirmed your address during that period.</li>
+            </ul>
             <form id="newVoterForm" onSubmit={handleSubmit}>
               <label style={{paddingTop: "0"}}>NAME:</label>
               <input required className="inputText" placeholder="First Name, Last Name" name="name" value={formData.name} onChange={handleChange}/>
