@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { useHistory } from 'react-router-dom'
+import React, { useState } from "react"
+// import { useHistory } from 'react-router-dom'
 
 function RegistrationForm({ addNewVoter }) {
     const [formData, setFormData] = useState(
@@ -14,7 +14,7 @@ function RegistrationForm({ addNewVoter }) {
        password: "",
       }
     )
-    const history = useHistory();
+    // const history = useHistory();
        
     function handleChange(e){
       setFormData({...formData, [e.target.name]: e.target.value})
@@ -35,12 +35,12 @@ function RegistrationForm({ addNewVoter }) {
     .then(res=> res.json())
     .then(addNewVoter)
     setFormData({name:"", address1: "", address2: "", state: "", postalCode: "", age: 18, party: "", password: ""})
-    history.push('/voters')
+    // history.push('/voters')
   }
 
-  useEffect(()=>{
-    window.scrollTo(0, 0);
-  }, ["/"]);
+  // useEffect(()=>{
+  //   window.scrollTo(0, 0);
+  // }, ["/"]);
 
     return (
         <div className="formBackground">

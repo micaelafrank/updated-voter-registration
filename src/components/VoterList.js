@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Voter from "./Voter";
 
 function VoterList({ voters, setVoters, searchVoters, deleteVoter }) {

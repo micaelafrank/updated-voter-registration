@@ -1,13 +1,13 @@
 
 import RegistrationForm from './RegistrationForm'
 import VoterPage from './VoterPage'
-import {useEffect, useState} from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+// import { Switch, Route } from 'react-router-dom'
 // import Search from './Search'
 import CandidateList from './CandidateList'
 import Home from './Home'
-import NavBar from './NavBar'
-
+import { Route, Routes } from 'react-router-dom';
+import WithNav from './WithNav'
 
 function App(){
   // const [search, setUserSearch] = useState("")
@@ -44,12 +44,23 @@ function App(){
 
   return (
     <div>
-        <NavBar/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      <Route element={<WithNav />}>
+          <Route path="/voters" element={<VoterPage voters={voters} setVoters={setVoters} />} />
+          <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
+          <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} />
+          {/* <Route path="*">
+            <React.Fragment>404 not found</React.Fragment>
+          </Route> */}
+        </Route>
+      </Routes>
+        {/* <NavBar/>
           <Switch>
-          <Route path="/voters">
+          <Route path="/voters"> */}
             {/* <Search search={search} handleSearch={setUserSearch}/>
             <VoterList search={search} voters={voters} setVoters={setVoters} searchVoters={searchVoters} deleteVoter={deleteVoter}/> */}
-            <VoterPage voters={voters} setVoters={setVoters} />
+            {/* <VoterPage voters={voters} setVoters={setVoters} />
           </Route>
           <Route path="/candidates">
             <CandidateList candidates={candidates}/> 
@@ -63,7 +74,7 @@ function App(){
           <Route path="*">
             <h1>404 not found</h1>
           </Route>
-        </Switch>
+        </Switch> */}
     </div>
   )}
 

@@ -15,6 +15,9 @@ body {
 .title {
   font-family: KGThankYouStamp;
   color: black;
+  font-size: 5rem;
+  letter-spacing: .3rem;
+  padding-top: 60px;
 }
 
 .hiddenVotersContainer{
@@ -23,23 +26,47 @@ body {
 
 .homePageContainer{
   background-image: url("images/tiedye.jpg");
-  background-size:cover;
+  background-size: cover;
   background-repeat: repeat;
-  min-height: 50rem;
-  width: 100%;
+  min-height: 100%;
   align-items: center;
   text-align: center;
 }
 
 .homeButton{
-  width: 460px;
-  height: 160px;
-  font-size: 50px;
-  font-family: KGThankYouStamp;
+  width: 440px;
+  height: 150px;
+  font-size: 32px;
+  font-family: monospace;
   background-color: rgb(255, 255, 255, .5);
-  margin: 0 40px;
-  border: 7px black;
-  border-style:inset
+  border: 7px solid black;
+  color: black;
+}
+
+.homeButton:hover{
+    background-color: rgba(59, 158, 216, 0.5);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+#button1home {
+  margin-right: 25px;
+}
+
+#button2home {
+  margin-left: 25px;
+}
+
+.homeNavItem{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+#button3home{
+  margin-top: 50px;
+  margin-bottom: 90px;
 }
 
 .buttonContainerHome{
@@ -47,7 +74,7 @@ body {
   align-items: center;
   display: flex;
   flex-direction: row;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 * {
