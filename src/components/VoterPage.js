@@ -17,7 +17,7 @@ function VoterPage({ voters, setVoters }) {
     );
 
     return (
-        <main style={{paddingTop: "35px", paddingBottom: "30px"}}>
+        <main className="voterPageContainer" style={{paddingTop: "35px", paddingBottom: "30px"}}>
             <h4 style={{fontSize: "36px", textAlign: "center"}}>Am I Registered?</h4>
             {/* <GridColSizesExample /> */}
             <Search search={search} onSearch={setSearch} />

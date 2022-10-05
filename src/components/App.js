@@ -47,6 +47,7 @@ function App(){
       <Routes>
         <Route path="/" element={<Home />} />
       <Route element={<WithNav />}>
+          <Route className="hidden" path="/home" element={<Home />} />
           <Route path="/voters" element={<VoterPage voters={voters} setVoters={setVoters} />} />
           <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
           <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} />

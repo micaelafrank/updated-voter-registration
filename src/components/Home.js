@@ -9,10 +9,16 @@ function Home(){
                 <h3 style={{ color: "black", textShadow: "none", fontSize: "40px", fontFamily: "KGThankYouStamp" }}>FOR THE CITY THAT NEVER SLEEPS ON VOTING</h3>
                 <h3 style={{ color: "black", textShadow: "none", fontSize: "30px", fontFamily: "monospace" }}>VOTER INFORMATION & RESOURCES ON UPCOMING ELECTIONS.</h3>
                 <div className="buttonContainerHome">
-                    <button id="button1home" className="homeButton"><Link className="homeNavItem" to="/register">REGISTER</Link></button>
-                    <button id="button2home" className="homeButton"><Link className="homeNavItem" to="/voters">CHECK REGISTRATION</Link></button>
+                    <Link className="homeNavItem" to="/register">
+                        <button id="button1home" className="homeButton">REGISTER</button>
+                    </Link>
+                    <Link className="homeNavItem" to="/voters">
+                        <button id="button2home" className="homeButton">CHECK REGISTRATION</button>
+                    </Link>
                 </div>
-                <button id="button3home" className="homeButton"><Link className="homeNavItem" to="/candidates">ON THE BALLOT</Link></button>
+                <Link className="homeNavItem" to="/candidates">
+                    <button id="button3home" className="homeButton">ON THE BALLOT</button>
+                </Link>
             </section>
         </React.Fragment>
     )}

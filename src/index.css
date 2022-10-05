@@ -12,6 +12,11 @@ body {
   src: url(KgThankYouStamp-M9Wn.ttf);
 }
 
+#navTitleGoHome{
+  text-decoration: none;
+  color: black;
+}
+
 .title {
   font-family: KGThankYouStamp;
   color: black;
@@ -36,7 +41,8 @@ body {
 .homeButton{
   width: 440px;
   height: 150px;
-  font-size: 32px;
+  font-size: 33px;
+  font-weight: bold;
   font-family: monospace;
   background-color: rgb(255, 255, 255, .5);
   border: 7px solid black;
@@ -138,13 +144,20 @@ h3, h2{
   text-shadow: 2px 2px rgb(48, 96, 179);
 }
 
+label{
+  font-family: monospace;
+  margin-bottom: 7px;
+}
+
 .formHeading2{
   text-align: center;
-  font-size: 80px;
+  font-family: KGThankYouStamp;
+  font-size: 70px;
+  letter-spacing: .05em;
   font-weight: bold;
   padding-bottom: 28px;
-  color: rgb(181, 225, 218);
-  text-shadow: 2px 2px rgb(48, 96, 179);
+  color: rgb(0, 0, 0);
+  text-shadow: 2px 2px rgb(120, 167, 187);
   line-height: 1;
 }
 
@@ -208,10 +221,6 @@ label{
   opacity: 0.7;
   margin: 0;
 }
-.navItem{
-  padding: 0 30px;
-  color:black;
-}
 
 .formBackground{
   margin: 0;
@@ -228,6 +237,62 @@ label{
   max-width: 70%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.navBarContainer{
+  background-image: url('images/tiedye.jpg');
+  opacity: .8;
+  height: 6.5em;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  background-size:cover;
+  background-position: bottom center;
+}
+
+#nav1, #nav2, #nav3, #nav4{
+  padding: 0 2rem;
+  color: black;
+  font-family: monospace;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#nav2:hover,
+#nav3:hover,
+#nav4:hover, .active{
+  border-bottom: 2px solid black;
+}
+
+/* .navBarList{
+  width: 80%;
+  float: right;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+} */
+
+.navBarList {
+  width: 55%;
+  height: 100%;
+  position: relative;
+  float: right;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.hidden{
+  display: none;
 }
 
 .gridItem{
@@ -329,13 +394,6 @@ label{
   width: 100%;
   justify-content: center;
   align-items: center;
-}
-
-.navBarList{
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  font-size: 18px;
 }
 
 /* Popup container */

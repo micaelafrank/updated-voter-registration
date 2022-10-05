@@ -44,8 +44,6 @@ function RegistrationForm({ addNewVoter }) {
 
     return (
         <div className="formBackground">
-            <h1 style={{paddingTop: "50px"}} className="formHeading2">REGISTER</h1>
-            <h1 className="formHeading2">REGISTER</h1>
             <h1 className="formHeading2">REGISTER</h1>
             <p>If you have already registered in New York, you are permanently registered unless:</p>
             <ul>
