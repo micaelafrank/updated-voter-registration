@@ -1,35 +1,45 @@
 import React, {useState} from "react";
 
-function Search({ onSearch }) {
+function Search({ setSearch }) {
+  const [formData, setFormData] = useState({ firstName:"", lastName: "", postalCode:"" });
+  // const [lastName, setLastName] = useState("");
+  // const [firstName, lastName] = useState("");
+  // const [postalCode, setPostalCode] = useState("");
 
-  const [search, setSearch] = useState("");
+  function handleChange(e) {
+    let key = e.target.name
+    let value = e.target.value
+    setFormData((formData) => ({ ...formData, [key]: value }))
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSearch(search);
+    setSearch(formData);
   }
 
   return (
     <div className="searchBarContainer">
-      <form className="searchbarForm" onSubmit={handleSubmit}>
-        <h4>View Voter Information</h4>
-        <p><span style={{ fontWeight: "bold" }}>Instructions:</span> Fill out the following information to view a voter's record. All fields are required.</p>
-        <div id="row1" style={{display: "flex", flexDirection: "row"}}>
+      <form style={{fontFamily:"monospace"}} className="searchbarForm" onSubmit={handleSubmit}>
+        <h4 style={{lineHeight:"0", fontSize:"30px", textAlign:"center"}}>CHECK YOUR VOTER STATUS</h4>
+        <p style={{ fontSize:"15px", lineHeight:"0"}}><span style={{ fontSize:"18px", fontWeight: "bold" }}>Instructions:</span> Fill out the following information to view a voter's record. All fields are required.</p>
+        <div id="row1" style={{ display: "flex", fontFamily: "monospace", flexDirection: "row"}}>
           <input
             required
             type="text"
-            id="search"
+            id="firstName"
             placeholder="First name"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={formData.firstName}
+            onChange={handleChange}
+            // onChange={(e) => setFirstName(e.target.value)}
           />
           <input
             required
             type="text"
             id="search"
             placeholder="Last name"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            value={formData.lastName}
+            onChange={handleChange}
+            // onChange={(e) => setLastName(e.target.value)}
           />
         </div>
         <div id="row2" style={{ display: "flex", flexDirection: "row" }}>
@@ -38,16 +48,15 @@ function Search({ onSearch }) {
             type="text"
             id="search"
             placeholder="Birthday (MM/DD/YYYY)"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
           />
           <input
             required
             type="text"
-            id="search"
-            placeholder="Zip Code"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            id="zip"
+            placeholder="Postal Code"
+            value={formData.zip}
+            onChange={handleChange}
+            // onChange={(e) => setPostalCode(e.target.value)}
           />
           <button type="submit">SUBMIT</button>
         </div>

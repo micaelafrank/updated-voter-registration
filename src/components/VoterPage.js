@@ -4,23 +4,28 @@ import VoterList from "./VoterList";
 import Search from "./Search";
 
 function VoterPage({ voters, setVoters }) {
+    // const [formData, setFormData] = useState({ first: "", last: "", postalCode: "" });
     // const [voters, setVoters] = useState([])
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState("");
+    // const [firstName, setFirstName] = useState("");
+    // const [lastName, setLastName] = useState("");
+    // const [zip, setZip] = useState("");
 
     function deleteVoter(id) {
         const updatedList = voters.filter((voter) => voter.id !== id);
         setVoters(updatedList);
     }
 
-    const searchedNames = voters.filter((voter) => 
-        voter.first.toLowerCase().includes(search.toLowerCase())
-    );
+    const searchedNames = voters.filter((voter) => {
+        return (voter.first.toLowerCase() === (firstName.toLowerCase())) &&
+            (voter.last.toLowerCase() === (lastName.toLowerCase())) &&
+            (voter.postalCode.toLowerCase() == (zip.toLowerCase()))
+    })
 
     return (
         <main className="voterPageContainer" style={{paddingTop: "35px", paddingBottom: "30px"}}>
-            <h4 style={{fontSize: "36px", textAlign: "center"}}>Am I Registered?</h4>
             {/* <GridColSizesExample /> */}
-            <Search search={search} onSearch={setSearch} />
+            <Search setSearch={setSearch} />
             {/* <VoterList voters={searchedNames} voters={voters} setVoters={setVoters} searchVoters={searchVoters} deleteVoter={deleteVoter} /> */}
             <VoterList voters={searchedNames} handleDelete={deleteVoter} />
         </main>
