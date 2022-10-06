@@ -6,8 +6,8 @@ function Home(){
         <React.Fragment>
             <section className="homePageContainer">
                 <h2 className="title">BIG APPLE BALLOTS</h2>
-                <h3 style={{ color: "black", textShadow: "none", fontSize: "40px", fontFamily: "KGThankYouStamp" }}>FOR THE CITY THAT NEVER SLEEPS ON VOTING</h3>
-                <h3 style={{ color: "black", textShadow: "none", fontSize: "30px", fontFamily: "monospace" }}>VOTER INFORMATION & RESOURCES ON UPCOMING ELECTIONS.</h3>
+                <h3 style={{ color: "black", textShadow: "none", fontSize: "40px", fontFamily: "KGThankYouStamp" }}>RIPE FOR THE POLLS</h3>
+                <h3 style={{ color: "black", textShadow: "none", fontSize: "30px", fontFamily: "monospace" }}>VOTER INFORMATION & RESOURCES ON UPCOMING ELECTIONS, FOR THE CITY THAT NEVER SLEEPS ON VOTING.</h3>
                 <div className="buttonContainerHome">
                     <Link className="homeNavItem" to="/register">
                         <button id="button1home" className="homeButton">REGISTER</button>

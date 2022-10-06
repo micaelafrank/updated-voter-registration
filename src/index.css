@@ -108,9 +108,42 @@ select{
   font-size: 14px;
   height: 45px;
   padding: 15px 25px;
-  width: 300px;
+  width: 350px;
   text-align: left;
   padding-left: 10px;
+}
+
+#registerForm input,
+#registerForm label{
+    font-family: monospace;
+    height: 30px;
+}
+
+#registerForm .row{
+  padding-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: space-between;
+}
+
+/* #add1, #add2{
+  width: 50%;
+} */
+
+#zip, #bday{
+  width: 60%;
+} 
+
+#age{
+  color: gray;
+  width: 30%;
+}
+
+#partyOptions{
+      font-family: monospace;
+      font-size: 14px;
+      color: gray;
+      padding: 15px;
 }
 
 h3, h2{
@@ -123,6 +156,24 @@ h3, h2{
   color: rgb(81, 114, 202);
   margin: auto;
   padding: 10px 0;
+}
+
+#newVoterSubmit{
+  height: 63px;
+  width: 210px;
+  font-size: 40px;
+  background-color: white;
+  border: 1px solid black;
+  font-family: monospace;
+}
+
+#newVoterSubmit:hover {
+  font-weight: bold;
+}
+
+#formCheck2{
+  font-size: 14px;
+  align-items: center;
 }
 
 .middleContainer{
@@ -147,20 +198,33 @@ h3, h2{
 label{
   font-family: monospace;
   margin-bottom: 7px;
-  font-size: 20px;
+  font-size: 18px;
   padding-top: 10px;
 }
 
-.formHeading2{
+.formHeading4{
+  text-align: center;
+    font-family: KGThankYouStamp;
+    font-size: 70px;
+    letter-spacing: .08em;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    text-shadow: 2px 2px rgb(120, 167, 187);
+    line-height: 0;
+}
+
+#overviewContainer{
+  margin-top: 60px;
+}
+
+#overviewTitle{
   text-align: center;
   font-family: KGThankYouStamp;
-  font-size: 70px;
+  font-size: 50px;
   letter-spacing: .05em;
-  font-weight: bold;
-  padding-bottom: 28px;
   color: rgb(0, 0, 0);
   text-shadow: 2px 2px rgb(120, 167, 187);
-  line-height: 1;
+  line-height: 0;
 }
 
 .formHeading3{
@@ -172,6 +236,30 @@ label{
   text-shadow: 2px 2px rgb(48, 135, 179);
   line-height: 1;
 }
+
+#registerForm{
+    align-items: center;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+#form-container-new{
+      align-items: center;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 30px;
+      margin-bottom: 90px;
+      display: block;
+      overflow: hidden;
+}
+
+#form-container-new > input{
+  width: 100%;
+}
+
 
 #newVoterForm {
   border: 6px solid rgb(197, 231, 242);
@@ -312,6 +400,18 @@ label{
   width: 300px;
   align-items: center;
   text-align: center;
+}
+
+#bullet1, #bullet2{
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 30px;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+#bullet2{
+    padding-top: 20px;
 }
 
 .candidate-headshot{

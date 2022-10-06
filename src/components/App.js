@@ -8,6 +8,7 @@ import CandidateList from './CandidateList'
 import Home from './Home'
 import { Route, Routes } from 'react-router-dom';
 import WithNav from './WithNav'
+import NewForm from './NewForm'
 
 function App(){
   // const [search, setUserSearch] = useState("")
@@ -51,6 +52,7 @@ function App(){
           <Route path="/voters" element={<VoterPage voters={voters} setVoters={setVoters} />} />
           <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
           <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} />
+          <Route path="/signup" element={<NewForm addNewVoter={addNewVoter} />} />
           {/* <Route path="*">
             <React.Fragment>404 not found</React.Fragment>
           </Route> */}
