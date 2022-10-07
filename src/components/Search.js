@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
-function Search({ setSearch }) {
-  const [formData, setFormData] = useState({ firstName:"", lastName: "", postalCode:"" });
+function Search({ handleSearch }) {
+  const [formData, setFormData] = useState({ firstNameSearch:"", lastNameSearch: "", zipSearch:"" });
   // const [lastName, setLastName] = useState("");
   // const [firstName, lastName] = useState("");
   // const [postalCode, setPostalCode] = useState("");
@@ -14,7 +14,7 @@ function Search({ setSearch }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSearch(formData);
+    handleSearch(formData);
   }
 
   return (
@@ -25,19 +25,21 @@ function Search({ setSearch }) {
         <div id="row1" style={{ display: "flex", fontFamily: "monospace", flexDirection: "row"}}>
           <input
             required
-            type="text"
-            id="firstName"
+            type="search"
+            id="firstNameSearch"
+            name="firstNameSearch"
             placeholder="First name"
-            value={formData.firstName}
+            value={formData.firstNameSearch}
             onChange={handleChange}
             // onChange={(e) => setFirstName(e.target.value)}
           />
           <input
             required
-            type="text"
-            id="search"
+            type="search"
+            id="lastNameSearch"
+            name="lastNameSearch"
             placeholder="Last name"
-            value={formData.lastName}
+            value={formData.lastNameSearch}
             onChange={handleChange}
             // onChange={(e) => setLastName(e.target.value)}
           />
@@ -45,16 +47,18 @@ function Search({ setSearch }) {
         <div id="row2" style={{ display: "flex", flexDirection: "row" }}>
           <input
             required 
-            type="text"
-            id="search"
+            type="date"
+            name="birthdaySearch"
+            id="birthdaySearch"
             placeholder="Birthday (MM/DD/YYYY)"
           />
           <input
             required
-            type="text"
-            id="zip"
+            type="search"
+            id="zipSearch"
+            name="zipSearch"
             placeholder="Postal Code"
-            value={formData.zip}
+            value={formData.zipSearch}
             onChange={handleChange}
             // onChange={(e) => setPostalCode(e.target.value)}
           />

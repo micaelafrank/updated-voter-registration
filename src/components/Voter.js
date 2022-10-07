@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import Popup from 'reactjs-popup';
 
-function Voter({ id, isActive, firstName, lastName, party, postalCode, password, deleteVoter }){
+function Voter({ id, isActive, search, firstName, lastName, party, postalCode, password, deleteVoter }){
      const [formName, setName] = useState("")
      const [formPassword, setPassword] = useState("")
 

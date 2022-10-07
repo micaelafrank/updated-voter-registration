@@ -14,6 +14,7 @@ function App(){
   // const [search, setUserSearch] = useState("")
   const [voters, setVoters] = useState([])
   const [candidates, setCandidates] = useState([])
+  // const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:9292/voters")
@@ -39,9 +40,10 @@ function App(){
   //   setVoters(updatedList);
   // }
 
-  // const searchVoters = voters.filter((voter) => {
-  //   return (voter.first.includes(search)) || (voter.last.includes(search)) 
+  // const searchedNames = voters.filter((voter) => {
+  //   return (voter.first.toLowerCase().includes(search.toLowerCase()) && voter.last.toLowerCase().includes(search.toLowerCase()) && voter.zip.toLowerCase().includes(search.toLowerCase()));
   // })
+
 
   return (
     <div>
@@ -58,26 +60,6 @@ function App(){
           </Route> */}
         </Route>
       </Routes>
-        {/* <NavBar/>
-          <Switch>
-          <Route path="/voters"> */}
-            {/* <Search search={search} handleSearch={setUserSearch}/>
-            <VoterList search={search} voters={voters} setVoters={setVoters} searchVoters={searchVoters} deleteVoter={deleteVoter}/> */}
-            {/* <VoterPage voters={voters} setVoters={setVoters} />
-          </Route>
-          <Route path="/candidates">
-            <CandidateList candidates={candidates}/> 
-          </Route>
-          <Route path="/registrationform">
-            <RegistrationForm addNewVoter={addNewVoter}/>
-          </Route>
-          <Route exact path="/">
-            <Home/>
-          </Route>
-          <Route path="*">
-            <h1>404 not found</h1>
-          </Route>
-        </Switch> */}
     </div>
   )}
 
