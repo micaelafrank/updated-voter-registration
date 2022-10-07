@@ -601,6 +601,13 @@ label{
   font-family: monospace;
 }
 
+#error-message{
+  font-family: monospace;
+  font-size: 20px;
+  margin: 50px;
+  text-align: center;
+}
+
 .searchbarForm button {
   background: white;
   border: 1px solid black;

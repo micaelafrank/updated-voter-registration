@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Voter from "./Voter";
 
-function VoterList({ handleSearch, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
+function VoterList({ handleSearchSubmit, count, handleSearchClear, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
 
   const listOfVoters = voters.map((voter) => (
       <Voter 
@@ -13,6 +13,7 @@ function VoterList({ handleSearch, searchedNames, isSearching, voters, setVoters
       isActive={voter.isActive}
       setVoters={setVoters}
       searchedNames={searchedNames}
+      count={count}
       // setSearch={setSearch}
       party={voter.party}
       password={voter.password}
@@ -30,6 +31,7 @@ function VoterList({ handleSearch, searchedNames, isSearching, voters, setVoters
         <section className="voterGridContainer">
           {isSearching ? searchedNames : listOfVoters}
         </section>
+        {count ? null : <p id="error-message"><span style={{fontWeight:"bold"}}>Not Found:</span> Your search did not match any record on file. Please ensure fields are accurate and try again.</p>}
       </React.Fragment>
     );
   }

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function Search({ setFirstNameSearch, setLastNameSearch, setZipSearch, handleSearch }) {
+function Search({ setFirstNameSearch, setLastNameSearch, setZipSearch, handleSearchClear, handleSearchSubmit }) {
   // const [formData, setFormData] = useState({ firstNameSearch:"", lastNameSearch: "", zipSearch:"" });
   const [fnSearch, setFNSearch] = useState("");
   const [lnSearch, setLNSearch] = useState("");
@@ -11,14 +11,14 @@ function Search({ setFirstNameSearch, setLastNameSearch, setZipSearch, handleSea
     setFirstNameSearch(fnSearch);
     setLastNameSearch(lnSearch);
     setZipSearch(zcSearch);
-    handleSearch();
+    handleSearchSubmit();
   }
 
-  function handleClearSearch(){
+  function clearSearch(){
     setFNSearch("");
     setLNSearch("");
     setZCSearch("");
-    handleSearch();
+    handleSearchClear();
   }
 
   function SubmitButton() {
@@ -82,7 +82,7 @@ function Search({ setFirstNameSearch, setLastNameSearch, setZipSearch, handleSea
             // onChange={(e) => setPostalCode(e.target.value)}
           />
           <SubmitButton/>
-          <button style={{ fontFamily: "monospace"}} onClick={handleClearSearch}>Clear Search</button>
+          <button style={{ fontFamily: "monospace"}} onClick={clearSearch}>Clear Search</button>
         </div>
       </form>
     </div>
