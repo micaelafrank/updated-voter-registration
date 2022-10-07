@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import Voter from "./Voter";
 
-function VoterList({ voters, setVoters, searchVoters, deleteVoter }) {
-  // const [chosenLetter, setLetter] = useState("All");
+function VoterList({ handleSearch, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
 
   const listOfVoters = voters.map((voter) => (
       <Voter 
@@ -13,19 +12,23 @@ function VoterList({ voters, setVoters, searchVoters, deleteVoter }) {
       voters={voters}
       isActive={voter.isActive}
       setVoters={setVoters}
-      searchVoters={searchVoters}
+      searchedNames={searchedNames}
+      // setSearch={setSearch}
       party={voter.party}
       password={voter.password}
       postalCode={voter.postalCode}
       // handleSearch={setUserSearch}
       deleteVoter={deleteVoter}
+      firstNameSearch={firstNameSearch}
+      lastNameSearch={lastNameSearch}
+      zipSearch={zipSearch}
       />
     ))
-    
+  
     return (
       <React.Fragment>
         <section className="voterGridContainer">
-          {listOfVoters}
+          {isSearching ? searchedNames : listOfVoters}
         </section>
       </React.Fragment>
     );
