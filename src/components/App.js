@@ -44,7 +44,7 @@ function App(){
           <Route path="/voters" element={<VoterPage />} />
           <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
           {/* <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} /> */}
-          <Route path="/signup" element={<NewForm />} />
+          <Route path="/register" element={<NewForm />} />
           {/* <Route path="*">
             <React.Fragment>404 not found</React.Fragment>
           </Route> */}
