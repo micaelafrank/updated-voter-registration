@@ -56,30 +56,55 @@ body {
 }
 
 
-#button1home {
+/* #button1home {
   margin-right: 25px;
 }
 
 #button2home {
   margin-left: 25px;
-}
+} */
 
 .homeNavItem{
   text-decoration: none;
   color: black;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-weight: bold;
 }
 
 #button3home{
-  margin-top: 50px;
+  /* margin-top: 50px; */
   margin-bottom: 90px;
 }
 
-.buttonContainerHome{
-  justify-content: center;
-  align-items: center;
+#homeImagesAndButtons{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5em;
+}
+
+#stickerimage {
+  /* background-image: url("images/sticker.png"); */
+  /* background-size: contain; */
+  display: inline-block;
+  height: 660px;
+  width: 570px;
+  margin-right: 50px;
+  padding: 0;
+  flex: 0 0 auto;
+  background: #ccc url("images/newsticker.png") no-repeat center center;
+  background-size: cover;
+  border: 10px solid black;
+}
+
+.buttonContainerHome{
+  margin-left: 50px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin-top: 80px;
 }
 
