@@ -7,10 +7,10 @@ import Modal from 'react-bootstrap/Modal';
 // import Popup from 'reactjs-popup';
 
 function Voter({ id, isActive, address1, address2, isFiltering, age, search, firstName, isSearching, lastName, party, postalCode, password, deleteVoter }){
-     const [formName, setName] = useState("")
-     const [formPassword, setPassword] = useState("")
+    //  const [formName, setName] = useState("")
+    //  const [formPassword, setPassword] = useState("")
      const [show, setShow] = useState(false);
-     const [validated, setValidated] = useState(false);
+    //  const [validated, setValidated] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -49,15 +49,15 @@ function Voter({ id, isActive, address1, address2, isFiltering, age, search, fir
         deleteVoter(id);
     }
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+    // const handleSubmit = (event) => {
+    //     const form = event.currentTarget;
+    //     if (form.checkValidity() === false) {
+    //         event.preventDefault();
+    //         event.stopPropagation();
+    //     }
 
-        setValidated(true);
-    };
+    //     setValidated(true);
+    // };
 
     return (
     <>
@@ -77,7 +77,7 @@ function Voter({ id, isActive, address1, address2, isFiltering, age, search, fir
                     Edit Voter Information
                 </Button> 
                 {/* : null} */}
-                {show ? <ModalSignIn show={show} validated={validated} handleSubmit={handleSubmit} setShow={setShow} handleClose={handleClose} handleShow={handleShow} /> : null}
+                {show ? <ModalSignIn firstName={firstName} password={password} lastName={lastName} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} /> : null}
                 {/* {isFiltering ? <button variant="primary" onClick={handleShow} id="moreInfoButton">Edit Voter Details</button> : null} */}
                 {/* <Popup trigger={<button> Delete Voter Record</button>} position="right center">
                     <form className="popuptext" onSubmit={handleSubmit}>
