@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function Search({ setFirstNameSearch, setLastNameSearch, setZipSearch, handleSearchClear, handleSearchSubmit }) {
+function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, setLastNameSearch, setZipSearch, handleSearchClear, handleSearchSubmit }) {
   // const [formData, setFormData] = useState({ firstNameSearch:"", lastNameSearch: "", zipSearch:"" });
   const [fnSearch, setFNSearch] = useState("");
   const [lnSearch, setLNSearch] = useState("");
@@ -12,6 +12,11 @@ function Search({ setFirstNameSearch, setLastNameSearch, setZipSearch, handleSea
     setLastNameSearch(lnSearch);
     setZipSearch(zcSearch);
     handleSearchSubmit();
+  }
+
+  function handleSearch(){
+    setIsFiltering(true);
+    console.log(`Filter results: ${isFiltering}`);
   }
 
   function clearSearch(){
@@ -81,7 +86,7 @@ function Search({ setFirstNameSearch, setLastNameSearch, setZipSearch, handleSea
             onChange={(e) => setZCSearch(e.target.value)}
             // onChange={(e) => setPostalCode(e.target.value)}
           />
-          <SubmitButton/>
+          <SubmitButton onClick={handleSearch} />
           <button style={{ fontFamily: "monospace"}} onClick={clearSearch}>Clear Search</button>
         </div>
       </form>

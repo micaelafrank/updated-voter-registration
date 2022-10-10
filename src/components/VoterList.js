@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Voter from "./Voter";
 
-function VoterList({ handleSearchSubmit, count, handleSearchClear, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
+function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
 
   const listOfVoters = voters.map((voter) => (
       <Voter 
@@ -23,6 +23,8 @@ function VoterList({ handleSearchSubmit, count, handleSearchClear, searchedNames
       firstNameSearch={firstNameSearch}
       lastNameSearch={lastNameSearch}
       zipSearch={zipSearch}
+      isSearching={isSearching}
+      isFiltering={isFiltering} 
       />
     ))
   

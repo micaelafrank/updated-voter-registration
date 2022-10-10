@@ -8,6 +8,7 @@ function VoterPage() {
     const [lastNameSearch, setLastNameSearch] = useState("")
     const [zipSearch, setZipSearch] = useState("")
     const [isSearching, setIsSearching] = useState(false);
+    const [isFiltering, setIsFiltering] = useState(false);
     const [error, setError] = useState("");
     const [voters, setVoters] = useState([])
 
@@ -30,10 +31,12 @@ function VoterPage() {
 
     function handleSearchSubmit() {
         setIsSearching(true)
+        setIsFiltering(true);
     }
 
     function handleSearchClear() {
         setIsSearching(false)
+        setIsFiltering(false);
     }
 
     const renderMessage = "Not found: Your search did not match any record on file. Please ensure fields are accurate and try again.";
@@ -53,9 +56,9 @@ function VoterPage() {
     return (
         <main className="voterPageContainer" style={{paddingTop: "35px", paddingBottom: "30px"}}>
             {/* <GridColSizesExample /> */}
-            <Search setFirstNameSearch={setFirstNameSearch} setLastNameSearch={setLastNameSearch} handleSearchClear={handleSearchClear} handleSearchSubmit={handleSearchSubmit} setZipSearch={setZipSearch} firstNameSearch={firstNameSearch} lastNameSearch={lastNameSearch} zipSearch={zipSearch} />
+            <Search isFiltering={isFiltering} setIsFiltering={setIsFiltering} setFirstNameSearch={setFirstNameSearch} setLastNameSearch={setLastNameSearch} handleSearchClear={handleSearchClear} handleSearchSubmit={handleSearchSubmit} setZipSearch={setZipSearch} firstNameSearch={firstNameSearch} isSearching={isSearching} lastNameSearch={lastNameSearch} zipSearch={zipSearch} />
             {/* <VoterList voters={searchedNames} voters={voters} setVoters={setVoters} searchVoters={searchVoters} deleteVoter={deleteVoter} /> */}
-            <VoterList count={count} error={error} voters={isSearching ? searchedNames : voters} handleSearchSubmit={handleSearchSubmit} handleSearchClear={handleSearchClear}  handleDelete={deleteVoter} firstNameSearch={firstNameSearch} lastNameSearch={lastNameSearch} zipSearch={zipSearch} setZipSearch={setZipSearch} setFirstNameSearch={setFirstNameSearch} setLastNameSearch={setLastNameSearch} />
+            <VoterList count={count} isFiltering={isFiltering} setIsFiltering={setIsFiltering} error={error} voters={isSearching ? searchedNames : voters} handleSearchSubmit={handleSearchSubmit} handleSearchClear={handleSearchClear}  handleDelete={deleteVoter} firstNameSearch={firstNameSearch} lastNameSearch={lastNameSearch} zipSearch={zipSearch} setZipSearch={setZipSearch} setFirstNameSearch={setFirstNameSearch} setLastNameSearch={setLastNameSearch} />
         </main>
 )}
 
