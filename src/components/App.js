@@ -9,6 +9,7 @@ import Home from './Home'
 import { Route, Routes } from 'react-router-dom';
 import WithNav from './WithNav'
 import NewForm from './NewForm'
+import ModalSignIn from './ModalSignIn'
 
 function App(){
   // const [search, setUserSearch] = useState("")
@@ -45,6 +46,7 @@ function App(){
           <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
           {/* <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} /> */}
           <Route path="/register" element={<NewForm />} />
+          <Route path="/modalsignin" element={<ModalSignIn />} />
           {/* <Route path="*">
             <React.Fragment>404 not found</React.Fragment>
           </Route> */}

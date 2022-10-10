@@ -14,6 +14,8 @@ function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, 
       setVoters={setVoters}
       searchedNames={searchedNames}
       count={count}
+      address1={voter.address1}
+      address2={voter.address2}
       // setSearch={setSearch}
       party={voter.party}
       password={voter.password}
@@ -24,13 +26,14 @@ function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, 
       lastNameSearch={lastNameSearch}
       zipSearch={zipSearch}
       isSearching={isSearching}
-      isFiltering={isFiltering} 
+      isFiltering={isFiltering}
+      age={voter.age}
       />
     ))
   
     return (
       <React.Fragment>
-        <section className="voterGridContainer">
+        <section className={isFiltering ? "searchGridContainer" : `voterGridContainer`}>
           {isSearching ? searchedNames : listOfVoters}
         </section>
         {count ? null : <p id="error-message"><span style={{fontWeight:"bold"}}>Not Found:</span> Your search did not match any record on file. Please ensure fields are accurate and try again.</p>}

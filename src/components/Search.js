@@ -5,12 +5,14 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
   const [fnSearch, setFNSearch] = useState("");
   const [lnSearch, setLNSearch] = useState("");
   const [zcSearch, setZCSearch] = useState("");
+  const [birthdaySearch, setBirthday] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
     setFirstNameSearch(fnSearch);
     setLastNameSearch(lnSearch);
     setZipSearch(zcSearch);
+    setBirthday(birthdaySearch);
     handleSearchSubmit();
   }
 
@@ -23,7 +25,9 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
     setFNSearch("");
     setLNSearch("");
     setZCSearch("");
+    setBirthday("");
     handleSearchClear();
+    setIsFiltering(false);
   }
 
   function SubmitButton() {
@@ -69,9 +73,11 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
             style={{color: "gray"}}
             required 
             type="date"
+            value={birthdaySearch}
             name="birthdaySearch"
             id="birthdaySearch"
             placeholder="Birthday (MM/DD/YYYY)"
+            onChange={(e) => setBirthday(e.target.value)}
           />
           <input
             width="20%"
