@@ -33,10 +33,11 @@ function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, 
   
     return (
       <React.Fragment>
+        <h1 className="formHeading4" style={{paddingTop:"50px", paddingBottom:"20px", fontFamily:"KGThankYouStamp", textAlign:"center", fontSize:"60px"}}>REGISTERED VOTERS</h1>
         <section className={isFiltering ? "searchGridContainer" : `voterGridContainer`}>
           {isSearching ? searchedNames : listOfVoters}
         </section>
-        {count ? null : <p id="error-message"><span style={{fontWeight:"bold"}}>Not Found:</span> Your search did not match any record on file. Please ensure fields are accurate and try again.</p>}
+        {(isSearching && count===0) ? <p id="error-message"><span style={{fontWeight:"bold"}}>Not Found:</span> Your search did not match any record on file. Please ensure fields are accurate and try again.</p> : null}
       </React.Fragment>
     );
   }

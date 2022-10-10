@@ -6,6 +6,7 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
   const [lnSearch, setLNSearch] = useState("");
   const [zcSearch, setZCSearch] = useState("");
   const [birthdaySearch, setBirthday] = useState("");
+  const [inputColor, setInputColor] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,6 +15,11 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
     setZipSearch(zcSearch);
     setBirthday(birthdaySearch);
     handleSearchSubmit();
+  }
+  
+  function handleBirthday(e){
+    setInputColor(true);
+    setBirthday(e.target.value);
   }
 
   function handleSearch(){
@@ -70,14 +76,15 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
         <div id="row2" style={{ display: "flex", flexDirection: "row" }}> */}
           <input
             width="20%"
-            style={{color: "gray"}}
             required 
             type="date"
             value={birthdaySearch}
+            style={inputColor ? { color: "black" } : { color: "gray" }}
             name="birthdaySearch"
             id="birthdaySearch"
             placeholder="Birthday (MM/DD/YYYY)"
-            onChange={(e) => setBirthday(e.target.value)}
+            onChange={handleBirthday}
+            // onChange={(e) => setBirthday(e.target.value)}
           />
           <input
             width="20%"
@@ -92,8 +99,8 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
             onChange={(e) => setZCSearch(e.target.value)}
             // onChange={(e) => setPostalCode(e.target.value)}
           />
-          <SubmitButton onClick={handleSearch} />
-          <button style={{ fontFamily: "monospace"}} onClick={clearSearch}>Clear Search</button>
+          <SubmitButton className="search-btn" onClick={handleSearch} />
+          <button className="search-btn" style={{ fontFamily: "monospace"}} onClick={clearSearch}>Clear Search</button>
         </div>
       </form>
     </div>

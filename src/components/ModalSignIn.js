@@ -4,8 +4,11 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 function ModalSignIn({ show, validated, handleSubmit, setShow, handleClose, handleShow }) {
-    // const [show, setShow] = useState(false);
+    const [inputColor, setInputColor] = useState(false);
 
+    function handleChange(e){
+        setInputColor(true);
+    }
     // const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
 
@@ -40,8 +43,10 @@ function ModalSignIn({ show, validated, handleSubmit, setShow, handleClose, hand
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label id="signInName" className="signInStyle">FULL NAME:</Form.Label>
                             <Form.Control
+                                style={inputColor ? { color: "black" } : { color: "gray" }}
                                 className="signInInput"
                                 type="text"
+                                onChange={handleChange}
                                 placeholder="Enter first and last name"
                                 autoFocus
                             />
@@ -59,8 +64,10 @@ function ModalSignIn({ show, validated, handleSubmit, setShow, handleClose, hand
                             <Form.Label id="passwordLabel1" className="signInStyle">PASSWORD:</Form.Label>
                             <Form.Control
                                 type="password"
+                                style={inputColor ? { color: "black" } : { color: "gray" }}
                                 className="signInInput"
                                 placeholder="Enter password"
+                                onChange={handleChange}
                                 autoFocus
                             />
                         </Form.Group>
@@ -68,7 +75,9 @@ function ModalSignIn({ show, validated, handleSubmit, setShow, handleClose, hand
                         <Form.Label id="passwordLabel2" className="signInStyle">CONFIRM PASSWORD:</Form.Label>
                             <Form.Control
                                 type="password"
+                                style={inputColor ? { color: "black" } : { color: "gray" }}
                                 className="signInInput"
+                                onChange={handleChange}
                                 placeholder="Re-enter password"
                                 autoFocus
                             />
