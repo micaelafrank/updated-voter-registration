@@ -56,7 +56,7 @@ function ModalSignIn({ show, validated, handleSubmit, setShow, handleClose, hand
                             />
                         </Form.Group> */}
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-                            <Form.Label className="signInStyle">PASSWORD:</Form.Label>
+                            <Form.Label id="passwordLabel1" className="signInStyle">PASSWORD:</Form.Label>
                             <Form.Control
                                 type="password"
                                 className="signInInput"
@@ -65,7 +65,7 @@ function ModalSignIn({ show, validated, handleSubmit, setShow, handleClose, hand
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-                            <Form.Label className="signInStyle">CONFIRM PASSWORD:</Form.Label>
+                        <Form.Label id="passwordLabel2" className="signInStyle">CONFIRM PASSWORD:</Form.Label>
                             <Form.Control
                                 type="password"
                                 className="signInInput"

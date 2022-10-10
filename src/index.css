@@ -17,7 +17,7 @@ body {  /* margin: 0; */
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: .5;
+  opacity: .8;
   z-index: 10;
   background-color: black;
   display: flex;
@@ -26,29 +26,31 @@ body {  /* margin: 0; */
 .modal-title1{
   font-size: 60px;
   letter-spacing: 3px;
-  font-weight: bold;
   text-shadow: 2px 2px rgb(120, 167, 187);
   text-align: center;
   padding: 10px 0;
   font-family: KGThankYouStamp;
 }
 
-/* #signInName{
-  line-height: 1;
+/* .searchMargins{
+  margin-left: 50px;
 } */
+
 
 .signInInput{
   font-size: 12px;
   align-items: right;
-  width: 50%;
+  width: 100%;
+  justify-content: right;
   height: 36px;
   padding: 5px;
   font-family: monospace;
   margin-bottom: 20px;
+  display: table column;
 }
 
 .modal-title2 {
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   font-family: monospace;
 }
@@ -61,7 +63,7 @@ body {  /* margin: 0; */
   z-index: 1000;
   position: fixed;
   width: 100%;
-  height: 28rem;
+  height: auto;
   max-width: 47rem;
   background-color: white;
   border: 1px solid black;
@@ -80,10 +82,16 @@ body {  /* margin: 0; */
   align-items: center;
 }
 
+.modal-body{
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
 .modal-footer{
   align-items: center;
   text-align: center;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .modal-btn{
@@ -98,18 +106,23 @@ body {  /* margin: 0; */
 
 #modal1 {
   background-color: rgb(255, 255, 255);
+  border: 1px solid black;
 }
 
 .mb-3{
-  width: 650px;
+  width: 560px;
+  display: flex;
+  flex-direction: row;
 }
 
 #modal1:hover, #modal2:hover {
   background-color: rgb(178, 184, 138);
+  border: 1px solid black;
 }
 
 #modal2 {
   background-color: rgb(197, 222, 236);
+  border: 1px solid black;
 }
 
 /* .fade.modal-backdrop.show {
@@ -149,8 +162,13 @@ body.modal-open {
   overflow: hidden;
 }
 
+.form-label{
+  width: 270px;
+  text-align: right;
+}
+
 label.signInStyle{
-  margin-right: 15px;
+  margin-right: 30px;
   font-size: 15px;
 }
 
@@ -538,6 +556,7 @@ label{
   display: none;
 }
 
+
 .gridItem{
   padding-top: 8px;
   padding-bottom: 8px;
@@ -547,10 +566,12 @@ label{
   align-items: center;
   margin-top: 5px;
   margin-bottom: 5px;
+  line-height: 1;
 }
 
 .searchItem{
     padding-top: 8px;
+    line-height: 1;
     padding-bottom: 8px;
     justify-items: center;
     align-self: center;
@@ -559,6 +580,7 @@ label{
     margin-top: 5px;
     margin-bottom: 5px;
     width: 100%;
+    text-align: left;
 }
 
 
@@ -600,8 +622,22 @@ label{
   border: .8px solid black;
   width: 500px;
   display: inline-grid;
-  align-items: center;
+  align-items: left;
   text-align: center;
+}
+
+#fullNameTitle {
+  font-size: 22px;
+  line-height: 1;
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+  font-family: monospace;
+}
+
+#initialTitle {
+  text-align: center;
+  font-family: monospace;
 }
 
 .searchContainerRed {
@@ -609,8 +645,9 @@ label{
   display: inline-grid;
   border: .8px solid red;
   width: 500px;
-  align-items: center;
   text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 #bullet1, #bullet2{
