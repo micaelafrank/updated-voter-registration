@@ -76,7 +76,7 @@ body {  /* margin: 0; */
 }
 
 .modal-header{
-  padding: 0.1rem 1.5rem 1.2rem 1.5rem;
+  padding: 0.1rem 1.5rem .3rem 1.5rem;
   align-items: center;
 }
 
@@ -114,18 +114,31 @@ body {  /* margin: 0; */
   border: 1px solid black;
 }
 
+.errorMessage{
+  color: red;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 0;
+}
+
 .mb-3{
   width: 560px;
   display: flex;
   flex-direction: row;
 }
 
-#modal1:hover, #modal2:hover {
+#modal1:hover, .modal1:hover {
   background-color: rgb(178, 184, 138);
   border: 1px solid black;
 }
 
-#modal2 {
+.modal1 {
   background-color: rgb(197, 222, 236);
   border: 1px solid black;
   font-size: 15px;
@@ -304,7 +317,7 @@ select{
 }
 
 #submit{
-  font-size: 18px;
+  font-size: 15px;
   padding: 8px;
 }
 
