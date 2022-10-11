@@ -13,18 +13,18 @@ import ModalSignIn from './ModalSignIn'
 import EditVoterCard from './EditVoterCard'
 
 function App(){
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [candidates, setCandidates] = useState([])
   // const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    fetch("/me").then((r) => {
+  // useEffect(() => {
+  //   fetch("/me").then((r) => {
       // fetch("https://menoushbackend.netlify.app/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+  //     if (r.ok) {
+  //       r.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     fetch("http://localhost:9292/candidates")
