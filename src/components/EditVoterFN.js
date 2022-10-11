@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function EditVoterInfo(){
+function EditVoterFN(){
     const [firstNameState, setFirstNameState] = useState("");
     const [editState, setEditState] = useState(false);
     const [initialFNValue, setInitialFNValue] = useState(firstName);
@@ -78,4 +78,4 @@ function EditVoterInfo(){
   )
 }
 
-export default EditVoterInfo;
+export default EditVoterFN;
