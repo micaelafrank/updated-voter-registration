@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 function NavBar(){
     return (
         <div className="navBarContainer">
-            <h2 class="navHeading" style={{paddingLeft:"20px", fontSize:"2.9rem", float: "left", alignItems:"center",
+            <h2 className="navHeading" style={{paddingLeft:"20px", fontSize:"2.9rem", float: "left", alignItems:"center",
                 textAlign: "center", fontFamily: "monospace", color: "black"
             }}><a id="navTitleGoHome" href="/">BIG APPLE BALLOTS</a></h2>
             <nav className="navBarList">

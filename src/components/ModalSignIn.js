@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import EditVoterCard from './EditVoterCard';
 
-function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose, handleShow }) {
+
+function ModalSignIn({ show, count, onLogin, age, address1, handleCount, address2, id, postalCode, party, isActive, setShow, lastName, firstName, password, handleClose, handleShow }) {
+    const navigate = useNavigate();
     const [inputColor, setInputColor] = useState(false);
     const [loginLastName, setLoginLastName] = useState("");
     const [loginFirstName, setLoginFirstName] = useState("");
@@ -12,15 +16,9 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
     const [validated, setValidated] = useState(false);
     const [errorHandling, setErrorHandling] = useState(false);
     const[errorMessages, setErrorMessages] = useState("");
-    // const [change, setChange] = useState(false);
+    const [canEdit, setCanEdit] = useState(false);
 
-    const formData = {loginFirstName, loginLastName, loginPassword, loginPasswordConf}
-    // function handleChange(e) {
-    //     let key = e.target.name
-    //     let value = e.target.value
-    //     setFormData((formData) => ({ ...formData, [key]: value }))
-    //     console.log(formData)
-    // }
+    // const formData = {loginFirstName, loginLastName, loginPassword, loginPasswordConf}
 
     function handleNameInput(){
         setInputColor(true);
@@ -29,16 +27,65 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
     let errorNum = 0;
     const error1 = "First name entered is not associated with this voter record. Please try again.";
     const error2 = "Last name entered is not associated with this voter record. Please try again.";
-    let count = 0;
     const error3 = "Password is incorrect. Please try again.";
     const error4 = "Passwords entered do not match. Please try again.";
 
-
-    // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
-
-    // const [validated, setValidated] = useState(false);
     useEffect(() => console.log("re-render because input changed: ", handleSubmit), [errorMessages])
+
+    // function handleSubmit(e) {
+    //     e.preventDefault();
+        //setIsLoading(true);
+        // fetch("/login", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({ loginFirstName, loginLastName, loginPassword }),
+        // })
+            // .then(resp => resp.json()).then(data => console.log(data))
+            // .then((r) => {
+                //setIsLoading(false);
+                // if (r.ok) {
+                //     r.json().then((user) => onLogin(user));
+                //     setValidated(true);
+                //     setErrorMessages("");
+                //     console.log("No errors!");
+                //     handleCount();
+                //     handleClose();
+                //     setCanEdit(canEdit => (!canEdit));
+                //     navigate("/voters/editvoter");
+                // } else {
+                //     if (loginFirstName === firstName) {
+                //         errorNum = 0;
+                //         // setErrorMessages(errorNum);
+                //         console.log(errorMessages);
+                //     } else if (loginFirstName !== firstName) {
+                //         errorNum = 1;
+                //         setErrorMessages(error1);
+                //     }
+                //     if (errorNum === 0 && (loginLastName === lastName)) {
+                //         errorNum = 0;
+                //     }
+                //     else if (errorNum === 0 && (loginLastName !== lastName)) {
+                //         errorNum = 2;
+                //         setErrorMessages(error2);
+                //     }
+                //     if (errorNum === 0 && (loginPassword === password)) {
+                //         errorNum = 0;
+                //     }
+                //     else if (errorNum === 0 && (loginPassword !== password)) {
+                //         errorNum = 3;
+                //         setErrorMessages(error3);
+                //     }
+                //     if (errorNum === 0 && loginPassword !== loginPasswordConf) {
+                //         errorNum = 4;
+                //         setErrorMessages(error4);
+                //     }
+                    // r.json().then((err) => console.log(err.errors)); 
+                    //setErrors(err.errors)
+    //             }
+    //         });
+    // }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -46,14 +93,8 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
         console.log(lastName);
         console.log(password);
         console.log(loginFirstName);
-        console.log(formData);
-        // const data = e.currentTarget;
-        // if (data.checkValidity() === false) {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        // }
-        // setErrorMessages([]);
-        
+        // console.log(formData);
+
         if(loginFirstName === firstName){
             errorNum = 0;
             // setErrorMessages(errorNum);
@@ -83,13 +124,18 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
         else if (errorNum === 0 && loginPassword === loginPasswordConf){
             setValidated(true);
             setErrorMessages("");
-            console.log("No errors!")
+            console.log("No errors!");
+            handleCount();
+            handleClose();
+            setCanEdit(canEdit => (!canEdit));
+            // navigate("/voters/editvoter");
         }
         console.log(errorMessages)
         return(errorMessages)
     }
 
     return (
+        <>
         <div className='modal-container'>
             <section className="modal">
             <Button variant="primary" onClick={handleShow}>Edit Voter Information</Button>
@@ -116,7 +162,9 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
                                 type="text"
                                 value={loginFirstName}
                                 name="loginFirstName"
-                                onChange={(e) => setLoginFirstName(e.target.value)}
+                                onChange={(e) => {
+                                    handleNameInput();
+                                    setLoginFirstName(e.target.value)}}
                                 placeholder="Enter first name"
                                 autoFocus
                             />
@@ -130,7 +178,9 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
                                 type="text"
                                 value={loginLastName}
                                 name="loginLastName"
-                                onChange={(e) => setLoginLastName(e.target.value)}
+                                onChange={(e) => {
+                                    handleNameInput();
+                                    setLoginLastName(e.target.value)}}
                                 placeholder="Enter last name"
                                 autoFocus
                             />
@@ -145,7 +195,9 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
                                 value={loginPassword}
                                 name="loginPassword"
                                 placeholder="Enter password"
-                                onChange={(e) => setLoginPassword(e.target.value)}
+                                onChange={(e) => {
+                                    handleNameInput();
+                                    setLoginPassword(e.target.value)}}
                                 autoFocus
                             />
                         </Form.Group>
@@ -156,7 +208,9 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
                                 type="password"
                                 style={inputColor ? { color: "black" } : { color: "gray" }}
                                 className="signInInput"
-                                onChange={(e) => setLoginPasswordConf(e.target.value)}
+                                onChange={(e) => {
+                                    handleNameInput();
+                                    setLoginPasswordConf(e.target.value)}}
                                 value={loginPasswordConf}
                                 name="loginPasswordConf"
                                 placeholder="Re-enter password"
@@ -176,11 +230,12 @@ function ModalSignIn({ show, setShow, lastName, firstName, password, handleClose
                         <input variant="primary" className="modal-btn modal1" id="submit" type="submit" value="SIGN IN" />
                     </Modal.Footer>
                         </Form>
-
                     </Modal.Body>
             </Modal>
+            {/* {canEdit ? <EditVoterCard firstName={firstName} count={count} lastName={lastName} postalCode={postalCode} address1={address1} address2={address2} isActive={isActive} party={party} id={id} age={age} /> : null} */}
             </section>
         </div>
+        </>
     );
 }
 

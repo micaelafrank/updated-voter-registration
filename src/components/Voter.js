@@ -3,10 +3,10 @@ import ModalSignIn from "./ModalSignIn";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-
+import EditVoterCard from "./EditVoterCard";
 // import Popup from 'reactjs-popup';
 
-function Voter({ id, isActive, address1, address2, isFiltering, age, search, firstName, isSearching, lastName, party, postalCode, password, deleteVoter }){
+function Voter({ id, onLogin, isActive, address1, address2, isFiltering, age, search, firstName, isSearching, lastName, party, postalCode, password, deleteVoter }){
     //  const [formName, setName] = useState("")
     //  const [formPassword, setPassword] = useState("")
      const [show, setShow] = useState(false);
@@ -41,12 +41,17 @@ function Voter({ id, isActive, address1, address2, isFiltering, age, search, fir
     //         e.target.reset();
     //     }
     // }
+    let count=1;
 
     function handleDelete(){
         fetch(`http://localhost:9292/voters/${id}`,{
             method: "DELETE",
         })
         deleteVoter(id);
+    }
+
+    function resetCount(){
+        count = 0;
     }
 
     // const handleSubmit = (event) => {
@@ -77,9 +82,10 @@ function Voter({ id, isActive, address1, address2, isFiltering, age, search, fir
                 <Button variant="primary" onClick={handleShow}>
                     Edit Voter Information
                 </Button> 
-
                 {/* : null} */}
-                {show ? <ModalSignIn firstName={firstName} password={password} lastName={lastName} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} /> : null}
+                {show ? <ModalSignIn firstName={firstName} handleCount={resetCount} count={count} address1={address1} address2={address2} party={party} id={id} isActive={isActive} postalCode={postalCode} age={age} password={password} lastName={lastName} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} /> : null}
+                {count=0 ? <EditVoterCard firstName={firstName} count={count} lastName={lastName} postalCode={postalCode} address1={address1} address2={address2} isActive={isActive} party={party} id={id} age={age} /> : null}
+
                 {/* {isFiltering ? <button variant="primary" onClick={handleShow} id="moreInfoButton">Edit Voter Details</button> : null} */}
                 {/* <Popup trigger={<button> Delete Voter Record</button>} position="right center">
                     <form className="popuptext" onSubmit={handleSubmit}>

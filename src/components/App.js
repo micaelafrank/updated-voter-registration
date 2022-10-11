@@ -10,18 +10,21 @@ import { Route, Routes } from 'react-router-dom';
 import WithNav from './WithNav'
 import NewForm from './NewForm'
 import ModalSignIn from './ModalSignIn'
+import EditVoterCard from './EditVoterCard'
 
 function App(){
-  // const [search, setUserSearch] = useState("")
+  const [user, setUser] = useState(null);
   const [candidates, setCandidates] = useState([])
   // const [search, setSearch] = useState("");
 
-  // useEffect(() => {
-  //   fetch("http://localhost:9292/voters")
-  //   .then(res=> res.json())
-  //   .then(voters=> setVoters(voters))
-  // }, [])
-  // console.log(voters)
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      // fetch("https://menoushbackend.netlify.app/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:9292/candidates")
@@ -42,11 +45,12 @@ function App(){
         <Route path="/" element={<Home />} />
       <Route element={<WithNav />}>
           <Route className="hidden" path="/home" element={<Home />} />
-          <Route path="/voters" element={<VoterPage />} />
+          <Route path="/voters" element={<VoterPage onLogin={setUser} />} />
           <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
           {/* <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} /> */}
           <Route path="/register" element={<NewForm />} />
-          <Route path="/modalsignin" element={<ModalSignIn />} />
+          {/* <Route path="/modalsignin" element={<ModalSignIn />} /> */}
+          <Route path="/voters/editvoter" element={<EditVoterCard />} />
           {/* <Route path="*">
             <React.Fragment>404 not found</React.Fragment>
           </Route> */}
