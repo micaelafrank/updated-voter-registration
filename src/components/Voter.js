@@ -73,9 +73,11 @@ function Voter({ id, isActive, address1, address2, isFiltering, age, search, fir
                 {isFiltering ? <p>RESIDENTIAL ADDRESS: {address1}, {address2} {postalCode}</p> : null}
                 {/* <p>{postalCode}</p> */}
                 {/* {isFiltering ?  */}
+                    {isFiltering ? <p><a href="https://findmypollsite.vote.nyc/?hn=&sn=&zip=">Find My Pollsite</a></p> : null}
                 <Button variant="primary" onClick={handleShow}>
                     Edit Voter Information
                 </Button> 
+
                 {/* : null} */}
                 {show ? <ModalSignIn firstName={firstName} password={password} lastName={lastName} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} /> : null}
                 {/* {isFiltering ? <button variant="primary" onClick={handleShow} id="moreInfoButton">Edit Voter Details</button> : null} */}
