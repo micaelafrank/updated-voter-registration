@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import EditVoterCard from './EditVoterCard';
 
 
-function ModalSignIn({ show, count, onLogin, age, address1, handleCount, address2, id, postalCode, party, isActive, setShow, lastName, firstName, password, handleClose, handleShow }) {
+function ModalSignIn({ show, validated, handleValidation, setValidated, count, age, address1, handleCount, address2, id, postalCode, party, isActive, setShow, lastName, firstName, password, handleClose, handleShow }) {
     const navigate = useNavigate();
     const [inputColor, setInputColor] = useState(false);
     const [loginLastName, setLoginLastName] = useState("");
     const [loginFirstName, setLoginFirstName] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [loginPasswordConf, setLoginPasswordConf] = useState("");
-    const [validated, setValidated] = useState(false);
+    // const [validated, setValidated] = useState(false);
     const [errorHandling, setErrorHandling] = useState(false);
     const[errorMessages, setErrorMessages] = useState("");
     const [canEdit, setCanEdit] = useState(false);
@@ -122,13 +122,13 @@ function ModalSignIn({ show, count, onLogin, age, address1, handleCount, address
             setErrorMessages(error4);
         }
         else if (errorNum === 0 && loginPassword === loginPasswordConf){
-            setValidated(true);
+            handleValidation();
             setErrorMessages("");
             console.log("No errors!");
             handleCount();
             handleClose();
             setCanEdit(canEdit => (!canEdit));
-            // navigate("/voters/editvoter");
+            navigate("/voters/editvoter");
         }
         console.log(errorMessages)
         return(errorMessages)

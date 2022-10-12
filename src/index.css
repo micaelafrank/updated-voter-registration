@@ -524,9 +524,10 @@ label{
   /* grid-template-columns: 1fr 1fr 1fr; */
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  justify-content: space-between;
-  align-content: space-around;
+  justify-content: center;
+  /* align-content: space-around; */
   max-width: 100%;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
 }
@@ -610,10 +611,31 @@ label{
     align-self: center;
     justify-self: center;
     align-items: center;
+    position: relative;
     margin-top: 5px;
     margin-bottom: 5px;
     width: 100%;
+    height: auto;
     text-align: left;
+}
+
+.searchItemEdit {
+  padding-top: 8px;
+  display: flex;
+  line-height: 1;
+  font-family: monospace;
+  padding-bottom: 8px;
+  justify-items: center;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  margin-top: 80px;
+  text-align: left;
 }
 
 
@@ -653,10 +675,25 @@ label{
 .searchContainerBlack {
   padding: 15px 10px;
   border: .8px solid black;
-  width: 500px;
+  width: 800px;
   display: inline-grid;
   align-items: left;
   text-align: center;
+}
+
+.searchContainerRed {
+  padding: 35px;
+  display: inline-grid;
+  border: 2px solid red;
+  width: 950px;
+  height: auto;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #fullNameTitle {
@@ -674,16 +711,6 @@ label{
   text-shadow: 1px 1px rgb(116, 175, 184);
   text-align: center;
   font-family: monospace;
-}
-
-.searchContainerRed {
-  padding: 15px 10px;
-  display: inline-grid;
-  border: .8px solid red;
-  width: 500px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
 }
 
 #bullet1, #bullet2{
@@ -908,4 +935,32 @@ label{
   margin-right: auto;
   margin-top: 12px;
   margin-bottom: 12px;
+}
+
+#editButton{
+  height: 1.9em;
+  width: 1.9em;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+#checkButton{
+    height: 2.2em;
+    width: 2.2em;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.mt-2{
+  align-items: center;
+  justify-content: center;
+}
+
+textarea.form-controlFN{
+  color: black;
+  font-size: 16px;
+  padding: 7px;
+  height: 40px;
 }

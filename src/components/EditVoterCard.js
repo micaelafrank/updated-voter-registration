@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import EditVoterFN from "./EditVoterFN";
+import EditVoterLN from "./EditVoterLN";
+import { FaEdit } from "react-icons/fa";
 
 
 function EditVoterCard({ id, count, canEdit, isActive, address1, address2, age, firstName, lastName, party, postalCode, deleteVoter }) {
@@ -28,16 +31,25 @@ function EditVoterCard({ id, count, canEdit, isActive, address1, address2, age, 
 
     return (
         <>
-            <div className="gridItem">
+            <h1 className="formHeading4" style={{marginTop: "100px"}}>EDIT VOTER INFORMATION</h1>
+            <div className="searchItemEdit">
                 <div className={isActive ? "searchContainerBlack" : "searchContainerRed"}>
-                    <p id="fullNameTitle" style={{ fontSize: "18px", textAlign: "center", alignItems: "center", fontWeight: "bold", lineHeight: ".4" }}>{fullName}</p>
+                    <div style={{display: "flex", paddingBottom: "12px", alignItems:"center", flexDirection:"row"}}>
+                        {/* <p id="fullNameTitle" style={{ fontSize: "18px", textAlign: "center", alignItems: "center", fontWeight: "bold", lineHeight: ".4" }}><EditVoterFN/></p> */}
+                        <EditVoterFN id={id} firstName={firstName} />
+                    </div>
+                    <div style={{ display: "flex", paddingBottom: "12px", alignItems: "center", flexDirection: "row" }}>
+                        {/* <p id="fullNameTitle" style={{ fontSize: "18px", textAlign: "center", alignItems: "center", fontWeight: "bold", lineHeight: ".4" }}>Last Name</p> */}
+                        <EditVoterLN id={id} lastName={lastName} />
+                    </div>
+                    {/* <EditVoterFN id={id} firstName={firstName} /> <EditVoterLN lastName={lastName} /> */}
                     <p style={{ lineHeight: "0" }}>{age} years old</p>
                     <p style={{ textAlign: "center", alignItems: "center" }}><span style={{ fontWeight: "bold" }}>VOTER SERIAL NUMBER (VSN): </span>{generate(6)}</p>
                     <p style={{ alignItems: "left" }}><span style={{ fontWeight: "bold" }}>PARTY: </span>{party ? party.party_name : 'Neutral'}</p>
                     <p style={{ fontSize: "13px", color: isActive ? "black" : "red" }}><span style={{ fontWeight: "bold" }}>VOTER STATUS: </span>{isActive ? "ACTIVE" : "INACTIVE"}</p>
                     <p>RESIDENTIAL ADDRESS: {address1}, {address2} {postalCode}</p>
                     <p><a href="https://findmypollsite.vote.nyc/?hn=&sn=&zip=">Find My Pollsite</a></p>
-                    <button onClick={handleDelete}>Delete My Voter Registration</button>
+                    <button style={{marginTop:"5px", marginBottom:"20px"}} onClick={handleDelete}>Delete My Voter Registration</button>
                 </div>
             </div> 
         </>

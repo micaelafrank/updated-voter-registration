@@ -1,24 +1,20 @@
 import React, {useState} from "react";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { FaEdit, FaRegCheckCircle } from "react-icons/fa";
 
-function EditVoterFN(){
+
+function EditVoterFN({ firstName, id }){
     const [firstNameState, setFirstNameState] = useState("");
     const [editState, setEditState] = useState(false);
     const [initialFNValue, setInitialFNValue] = useState(firstName);
-    const [isHovering, setIsHovering] = useState(false);
 
-    const handleMouseEnter = () => {
-        setIsHovering(true);
-    };
 
-    const handleMouseLeave = () => {
-        setIsHovering(false);
-    };
-
-    let handleEdit = (e) => {
+    function handleEdit(){
         setEditState(!editState);
-
-        if (e.target.textContent === "Done Editing" && firstNameState !== "") {
-            fetch(`/edit/${id}`, {
+        if (firstNameState !== "") {
+            fetch(`/editvoter/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -36,16 +32,19 @@ function EditVoterFN(){
 
     return(
         <>
-        {editState ? (
-            <Row className="mt-2">
-                    <Col>
-                        <textarea
-                        className="form-control"
-                        defaultValue={initialFNValue}
-                        onChange={(e) => setFirstNameState(e.target.value)}
-                        />
-                    </Col>
+        {editState ? 
+            (<div>
+                    {/* <p id="fullNameTitle" style={{ fontSize: "18px", textAlign: "center", alignItems: "center", fontWeight: "bold", lineHeight: ".4" }}>{initialFNValue}</p> */}
+                    <Row className="mt-2">
+                        <Col>
+                            <textarea
+                            className="form-controlFN"
+                            defaultValue={initialFNValue}
+                            onChange={(e) => setFirstNameState(e.target.value)}
+                            />
+                        </Col>
                     </Row>
+                </div>
                 ) : (
                     // </InputGroup>
                     // </ListGroup.Item>
@@ -57,23 +56,9 @@ function EditVoterFN(){
                     </Row>
                 )
             }
-            {/* </ListGroup.Item> */ }
-            <Button
-                variant="outline-dark"
-                onClick={handleEdit}
-                className="addCartButton border-1 border-dark sm"
-                style={{
-                    backgroundColor: isHovering ? "#1d1a0c" : "white",
-                    // color: isHovering ? "#d8a941" : "black",
-                    // color: isHovering ? "#d8a941" : "white",
-                    color: isHovering ? "white" : "black",
-                    width: "100%",
-                }}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                {editState ? "Done Editing" : "Edit First Name"}
-            </Button>
+            
+            {editState ? <FaRegCheckCircle id="checkButton" onClick={handleEdit} /> : <FaEdit id="editButton" onClick={handleEdit} />}
+            {/* </Button> */}
     </>
   )
 }

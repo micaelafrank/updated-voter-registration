@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import Voter from "./Voter";
 
-function VoterList({ handleSearchSubmit, onLogin, isFiltering, count, handleSearchClear, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
+function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
 
   const listOfVoters = voters.map((voter) => (
       <Voter 
       key={voter.id}
       id={voter.id}
-      onLogin={onLogin}
+      // onLogin={onLogin}
       lastName={voter.last}
       firstName={voter.first}
       voters={voters}

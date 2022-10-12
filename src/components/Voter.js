@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ModalSignIn from "./ModalSignIn";
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+// import Form from 'react-bootstrap/Form';
+// import Modal from 'react-bootstrap/Modal';
 import EditVoterCard from "./EditVoterCard";
 // import Popup from 'reactjs-popup';
 
-function Voter({ id, onLogin, isActive, address1, address2, isFiltering, age, search, firstName, isSearching, lastName, party, postalCode, password, deleteVoter }){
+function Voter({ id, isActive, address1, address2, isFiltering, age, search, firstName, isSearching, lastName, party, postalCode, password, deleteVoter }){
+    const [validated, setValidated] = useState(false);
     //  const [formName, setName] = useState("")
     //  const [formPassword, setPassword] = useState("")
      const [show, setShow] = useState(false);
@@ -18,6 +19,10 @@ function Voter({ id, onLogin, isActive, address1, address2, isFiltering, age, se
     const initial = firstName[0];
     const shortName = `${initial}. ${lastName}`;
     const fullName = `${firstName} ${lastName}`;
+
+    function handleValidation(){
+        setValidated((validated) => !validated);
+    }
 
     function generate(n) {
         var add = 1, max = 12 - add;   // 12 is the min safe number Math.random() can generate without it starting to pad the end with zeros.   
@@ -43,12 +48,12 @@ function Voter({ id, onLogin, isActive, address1, address2, isFiltering, age, se
     // }
     let count=1;
 
-    function handleDelete(){
-        fetch(`http://localhost:9292/voters/${id}`,{
-            method: "DELETE",
-        })
-        deleteVoter(id);
-    }
+    // function handleDelete(){
+    //     fetch(`http://localhost:9292/voters/${id}`,{
+    //         method: "DELETE",
+    //     })
+    //     deleteVoter(id);
+    // }
 
     function resetCount(){
         count = 0;
@@ -66,7 +71,7 @@ function Voter({ id, onLogin, isActive, address1, address2, isFiltering, age, se
 
     return (
     <>
-        <div className={isFiltering ? `gridItem` : `searchItem`}>
+    <div className={isFiltering ? `searchItem` : `gridItem`}>
         <div className={isActive ? (isFiltering ? `searchContainerBlack` : `voterContainerBlack`) : (isFiltering ? `searchContainerRed` : `voterContainerRed`)}>
             {/* <p style={{ fontSize:"18px", fontWeight:"bold" }}>{firstName}</p> */}
             <p id={isFiltering ? "fullNameTitle" : "initialTitle"} style={{ fontSize: "18px", textAlign:"center", alignItems:"center", fontWeight: "bold", lineHeight:".4" }}>{isFiltering ? fullName : shortName}</p>
@@ -83,8 +88,8 @@ function Voter({ id, onLogin, isActive, address1, address2, isFiltering, age, se
                     Edit Voter Information
                 </Button> 
                 {/* : null} */}
-                {show ? <ModalSignIn firstName={firstName} handleCount={resetCount} count={count} address1={address1} address2={address2} party={party} id={id} isActive={isActive} postalCode={postalCode} age={age} password={password} lastName={lastName} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} /> : null}
-                {count=0 ? <EditVoterCard firstName={firstName} count={count} lastName={lastName} postalCode={postalCode} address1={address1} address2={address2} isActive={isActive} party={party} id={id} age={age} /> : null}
+                {show ? <ModalSignIn handleValidation={handleValidation} firstName={firstName} handleCount={resetCount} count={count} address1={address1} address2={address2} party={party} id={id} isActive={isActive} postalCode={postalCode} age={age} password={password} lastName={lastName} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow} /> : null}
+                {/* {validated ? <EditVoterCard firstName={firstName} count={count} lastName={lastName} postalCode={postalCode} address1={address1} address2={address2} isActive={isActive} party={party} id={id} age={age} /> : null} */}
 
                 {/* {isFiltering ? <button variant="primary" onClick={handleShow} id="moreInfoButton">Edit Voter Details</button> : null} */}
                 {/* <Popup trigger={<button> Delete Voter Record</button>} position="right center">

@@ -1,30 +1,23 @@
 import React, { useState } from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { FaEdit, FaRegCheckCircle } from "react-icons/fa";
 
-function EditVoterLN() {
+function EditVoterLN({ id, lastName }) {
     const [lastNameState, setLastNameState] = useState("");
     const [editState, setEditState] = useState(false);
     const [initialLNValue, setInitialLNValue] = useState(lastName);
-    const [isHovering, setIsHovering] = useState(false);
 
-    const handleMouseEnter = () => {
-        setIsHovering(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovering(false);
-    };
-
-    let handleEdit = (e) => {
+    function handleEdit() {
         setEditState(!editState);
-
-        if (e.target.textContent === "Done Editing" && lastNameState !== "") {
-            fetch(`/edit/${id}`, {
+        if (lastNameState !== "") {
+            fetch(`/editvoter/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    lastName: lastNameState,
+                    firstName: lastNameState,
                     id: id,
                 }),
             })
@@ -33,6 +26,25 @@ function EditVoterLN() {
         }
     };
 
+    // let handleEdit = (e) => {
+    //     setEditState(!editState);
+
+    //     if (e.target.textContent === "Done Editing" && lastNameState !== "") {
+    //         fetch(`/edit/${id}`, {
+    //             method: "PATCH",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //                 lastName: lastNameState,
+    //                 id: id,
+    //             }),
+    //         })
+    //             .then((resp) => resp.json())
+    //             .then((data) => setInitialLNValue(data.lastName));
+    //     }
+    // };
+
 
     return (
         <>
@@ -40,7 +52,7 @@ function EditVoterLN() {
                 <Row className="mt-2">
                     <Col>
                         <textarea
-                            className="form-control"
+                            className="form-controlFN"
                             defaultValue={initialLNValue}
                             onChange={(e) => setLastNameState(e.target.value)}
                         />
@@ -58,7 +70,7 @@ function EditVoterLN() {
             )
             }
             {/* </ListGroup.Item> */}
-            <Button
+            {/* <Button
                 variant="outline-dark"
                 onClick={handleEdit}
                 className="addCartButton border-1 border-dark sm"
@@ -71,9 +83,10 @@ function EditVoterLN() {
                 }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-            >
-                {editState ? "Done Editing" : "Edit Last Name"}
-            </Button>
+            > */}
+            {editState ? <FaRegCheckCircle id="checkButton" onClick={handleEdit} /> : <FaEdit id="editButton" onClick={handleEdit} />}
+                {/* {editState ? "Done Editing" : "Edit Last Name"}
+            </Button> */}
         </>
     )
 }

@@ -1,7 +1,6 @@
-
-import RegistrationForm from './RegistrationForm'
+import React, { useEffect, useState } from 'react'
+// import RegistrationForm from './RegistrationForm'
 import VoterPage from './VoterPage'
-import React, {useEffect, useState} from 'react'
 // import { Switch, Route } from 'react-router-dom'
 // import Search from './Search'
 import CandidateList from './CandidateList'
@@ -9,7 +8,7 @@ import Home from './Home'
 import { Route, Routes } from 'react-router-dom';
 import WithNav from './WithNav'
 import NewForm from './NewForm'
-import ModalSignIn from './ModalSignIn'
+// import ModalSignIn from './ModalSignIn'
 import EditVoterCard from './EditVoterCard'
 
 function App(){
@@ -45,7 +44,7 @@ function App(){
         <Route path="/" element={<Home />} />
       <Route element={<WithNav />}>
           <Route className="hidden" path="/home" element={<Home />} />
-          <Route path="/voters" element={<VoterPage onLogin={setUser} />} />
+          <Route path="/voters" element={<VoterPage />} />
           <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
           {/* <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} /> */}
           <Route path="/register" element={<NewForm />} />
