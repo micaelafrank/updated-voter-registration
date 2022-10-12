@@ -57,7 +57,7 @@ function EditVoterFN({ firstName, id }){
                 )
             }
             
-            {editState ? <FaRegCheckCircle id="checkButton" onClick={handleEdit} /> : <FaEdit id="editButton" onClick={handleEdit} />}
+            {editState ? <FaRegCheckCircle id="checkButton" onClick={handleEdit} /> : <FaEdit className="--fa-primary-color --fa-secondary-color" id="editButton" onClick={handleEdit} />}
             {/* </Button> */}
     </>
   )

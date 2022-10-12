@@ -3,7 +3,7 @@ import EditVoterFN from "./EditVoterFN";
 import EditVoterLN from "./EditVoterLN";
 import { FaEdit } from "react-icons/fa";
 import EditVoterAddress from "./EditVoterAddress";
-
+import EditVoterParty from "./EditVoterParty";
 
 function EditVoterCard({ id, count, canEdit, isActive, address1, address2, age, firstName, lastName, party, postalCode, deleteVoter }) {
     const fullName = `${firstName} ${lastName}`;
@@ -46,9 +46,11 @@ function EditVoterCard({ id, count, canEdit, isActive, address1, address2, age, 
                     {/* <EditVoterFN id={id} firstName={firstName} /> <EditVoterLN lastName={lastName} /> */}
                     <p style={{ lineHeight: "0", fontSize: "16px" }}><span style={{ fontWeight: "bold" }}>AGE: </span>{age} years old</p>
                     <p style={{ textAlign: "center", fontSize: "16px", alignItems: "center" }}><span style={{ fontWeight: "bold" }}>VOTER SERIAL NUMBER (VSN): </span>{generate(6)}</p>
-                    <p style={{ alignItems: "left", fontSize: "16px" }}><span style={{ fontWeight: "bold" }}>PARTY: </span>{party ? party.party_name : 'Neutral'}</p>
+                    {/* <p style={{ alignItems: "left", fontSize: "16px" }}><span style={{ fontWeight: "bold" }}>PARTY: </span>{party ? party.party_name : 'Neutral'}</p> */}
+                    <EditVoterParty party={party} id={id} />
                     <p style={{ fontSize: "16px", color: isActive ? "black" : "red" }}><span style={{ fontWeight: "bold" }}>VOTER STATUS: </span>{isActive ? "ACTIVE" : "INACTIVE"}</p>
-                    <p style={{ fontSize: "16px" }}><span style={{ fontWeight: "bold" }}>RESIDENTIAL ADDRESS: </span><span style={{display:"flex", flexDirection:"row"}}>{address1}3786 Paseo Primario, {address2}Floor 2, {postalCode}11215 <EditVoterAddress id={id} postalCode={postalCode} address1={address1} address2={address2} /></span></p>
+                    <p style={{ fontSize: "16px" }}><span style={{ fontWeight: "bold" }}>RESIDENTIAL ADDRESS: </span><span style={{ display: "flex", flexDirection: "row" }}>{address1}, {address2}, {postalCode}</span></p>
+                    <EditVoterAddress id={id} postalCode={postalCode} address1={address1} address2={address2} />
                     <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
                         <button id="deleteRegBtn" style={{ marginRight: "5px" }}><a style={{ textDecoration: "none", color: "black" }} href="https://findmypollsite.vote.nyc/?hn=&sn=&zip=">FIND MY POLLSITE</a></button>
                         <button id="deleteRegBtn" style={{marginLeft:"5px"}} onClick={handleDelete}>DELETE MY VOTING RECORD</button>

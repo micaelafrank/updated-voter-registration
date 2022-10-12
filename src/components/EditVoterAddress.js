@@ -16,7 +16,7 @@ function EditVoterAddress({ address1, address2, id, postalCode }) {
 
     function handleEdit(){
         setEditState(!editState);
-        if (address1State !== "") {
+        if (address1State !== "" && address2State !== "" && postalCodeState !== "") {
             fetch(`/editvoter/${id}`, {
                 method: "PATCH",
                 headers: {
@@ -44,9 +44,9 @@ function EditVoterAddress({ address1, address2, id, postalCode }) {
     return (
         <>
             {editState ?
-                (<div>
+                (<div style={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-evenly"}}>
                     {/* <p id="fullNameTitle" style={{ fontSize: "18px", textAlign: "center", alignItems: "center", fontWeight: "bold", lineHeight: ".4" }}>{initialFNValue}</p> */}
-                    <Row className="mt-2">
+                    <Row className="mt-2" style={{ marginRight: "25px" }}>
                         <Col>
                             <textarea
                                 className="form-controlFN"
@@ -55,7 +55,7 @@ function EditVoterAddress({ address1, address2, id, postalCode }) {
                             />
                         </Col>
                     </Row>
-                    <Row className="mt-2">
+                    <Row className="mt-2" style={{ marginRight: "25px" }}>
                         <Col>
                             <textarea
                                 className="form-controlFN"
@@ -64,15 +64,17 @@ function EditVoterAddress({ address1, address2, id, postalCode }) {
                             />
                         </Col>
                     </Row>
-                    <Row className="mt-2">
+                    <Row className="mt-2" style={{ marginRight: "10px" }}>
                         <Col>
-                            <textarea
+                            <textarea 
                                 className="form-controlFN"
+                                placeholder={initialPostalCodeValue}
                                 defaultValue={initialPostalCodeValue}
                                 onChange={(e) => setPostalCodeState(e.target.value)}
                             />
                         </Col>
                     </Row>
+                    {editState ? <FaRegCheckCircle id="checkButton" onClick={handleEdit} /> : <FaEdit id="editButton" onClick={handleEdit} />}
                 </div>
                 ) : (
                     // </InputGroup>
@@ -94,10 +96,10 @@ function EditVoterAddress({ address1, address2, id, postalCode }) {
                             <span>{initialPostalCodeValue}</span>
                         </Col>
                     </Row>
+                    {editState ? <FaRegCheckCircle id="checkButton" onClick={handleEdit} /> : <FaEdit id="editButton" onClick={handleEdit} />}
                 </div>
                 )
             }
-            {editState ? <FaRegCheckCircle id="checkButton" onClick={handleEdit} /> : <FaEdit id="editButton" onClick={handleEdit} />}
 
 
             {/* {editState2 ? (
