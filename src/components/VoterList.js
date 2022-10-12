@@ -34,7 +34,7 @@ function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, 
   
     return (
       <React.Fragment>
-        <h1 className="formHeading4" style={{paddingTop:"50px", paddingBottom:"20px", fontFamily:"KGThankYouStamp", textAlign:"center", fontSize:"60px"}}>REGISTERED VOTERS</h1>
+        <h1 className="formHeading4" style={{padding:"50px 0 30px 0"}}>REGISTERED VOTERS</h1>
         <section className={isFiltering ? "searchGridContainer" : `voterGridContainer`}>
           {isSearching ? searchedNames : listOfVoters}
         </section>

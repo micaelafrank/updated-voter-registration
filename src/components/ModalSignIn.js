@@ -17,6 +17,8 @@ function ModalSignIn({ show, validated, handleValidation, setValidated, count, a
     const [errorHandling, setErrorHandling] = useState(false);
     const[errorMessages, setErrorMessages] = useState("");
     const [canEdit, setCanEdit] = useState(false);
+    const [revealText, setRevealText] = useState(false);
+    const [confTextReveal, setConfTextReveal] = useState(false);
 
     // const formData = {loginFirstName, loginLastName, loginPassword, loginPasswordConf}
 
@@ -134,6 +136,29 @@ function ModalSignIn({ show, validated, handleValidation, setValidated, count, a
         return(errorMessages)
     }
 
+    const togglePassword = document.querySelector("#togglePassword");
+    const togglePassword2 = document.querySelector("#togglePassword2");
+    const passwordInput = document.querySelector("#passwordInput");
+    const passwordInput2 = document.querySelector("#passwordInput2");
+
+
+    function handleTextReveal() {
+        setRevealText((revealText) => !revealText)
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput.setAttribute("type", type);
+        // toggle the icon
+        this.classList.toggle("bi-eye");
+    }
+
+    function handleConfTextReveal() {
+        setConfTextReveal((confTextReveal) => !confTextReveal)
+        const type = passwordInput2.getAttribute("type") === "password" ? "text" : "password";
+        passwordInput2.setAttribute("type", type);
+        // toggle the icon
+        this.classList.toggle("bi-eye");
+    }
+
+
     return (
         <>
         <div className='modal-container'>
@@ -142,6 +167,11 @@ function ModalSignIn({ show, validated, handleValidation, setValidated, count, a
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="modal-header">
                 {/* closeButton> */}
+                    <Form.Group className="XIconContainer" onClick={handleClose}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                        </svg>  
+                    </Form.Group>                  
                     <Modal.Title className="modal-title1">
                         Sign In
                     </Modal.Title>
@@ -199,7 +229,9 @@ function ModalSignIn({ show, validated, handleValidation, setValidated, count, a
                                     handleNameInput();
                                     setLoginPassword(e.target.value)}}
                                 autoFocus
+                                id="passwordInput"
                             />
+                            {revealText ? (<i className="bi bi-eye" onClick={handleTextReveal} id="togglePassword"></i>) : (<i className="bi bi-eye-slash" onClick={handleTextReveal} id="togglePassword"></i>)}
                         </Form.Group>
                         {/* {errorNum=3 ? <Form.Label className="errorMessage" style={{ color: "red" }}>{error3}</Form.Label> : null}                             */}
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
@@ -215,7 +247,9 @@ function ModalSignIn({ show, validated, handleValidation, setValidated, count, a
                                 name="loginPasswordConf"
                                 placeholder="Re-enter password"
                                 autoFocus
+                                id="passwordInput2"
                             />
+                                {confTextReveal ? (<i className="bi bi-eye" onClick={handleConfTextReveal} id="togglePassword2"></i>) : (<i className="bi bi-eye-slash" onClick={handleConfTextReveal} id="togglePassword2"></i>)}
                         </Form.Group>
                         {/* {errorNum = 4 ? <Form.Label className="errorMessage" style={{ color: "red" }}>{error4}</Form.Label> : null}                             */}
                     <Modal.Footer>

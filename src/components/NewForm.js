@@ -1,13 +1,13 @@
+import React, { useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import React, {useState} from 'react';
-import PassClosedEye from './PassClosedEye';
-import PassOpenEye from './PassOpenEye';
+// import PassClosedEye from './PassClosedEye';
+// import PassOpenEye from './PassOpenEye';
 
 function NewForm({ addNewVoter }) {
-
+    const [revealText, setRevealText] = useState(false);
     const [formData, setFormData] = useState(
         {
             name: "",
@@ -43,6 +43,17 @@ function NewForm({ addNewVoter }) {
         setFormData({ name: "", address1: "", address2: "", state: "", postalCode: "", age: 18, party: "", password: "" })
         // history.push('/voters')
     }
+    const togglePassword = document.querySelector("#togglePassword");
+    const password = document.querySelector("#password");
+
+    function handleTextReveal(){
+        setRevealText((revealText) => !revealText)
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+        // toggle the icon
+        this.classList.toggle("bi-eye");
+    }
 
     return (
         <React.Fragment>
@@ -66,7 +77,7 @@ function NewForm({ addNewVoter }) {
             </div>
             <div id="form-container-new">
                 <h1 className="formHeading4">REGISTER</h1>
-                <Form id="registerForm">
+                <Form id="registerForm" onSubmit={handleSubmit}>
                     <Row style={{display:"flex", flexDirection:"row"}}>
                         <Col xs={7}>
                             <label style={{paddingRight:"10px"}}>FIRST NAME:</label>
@@ -102,7 +113,7 @@ function NewForm({ addNewVoter }) {
                         </Col>
                     </Row>
                     <Row style={{ display: "flex", flexDirection: "row", alignItems:"center" }}>
-                        <Form.Group as={Col} controlId="formGridState" style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                        <Form.Group as={Col} controlId="formGridState" style={{ flexDirection: "row", alignItems: "center" }}>
                             <Form.Label style={{ paddingRight: "10px"}}>CHOOSE A PARTY:</Form.Label>
                             <Form.Select id="partyOptions" required defaultValue={'DEFAULT'} value={formData.party_name} style={{height:"30px"}} onChange={handleChange}>
                                 <option value="DEFAULT">Choose one</option>
@@ -115,9 +126,10 @@ function NewForm({ addNewVoter }) {
                         </Form.Group>
                         <Col>
                             <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
-                                <label style={{ paddingRight: "10px", paddingLeft:"16px" }}>CREATE A LOGIN PASSWORD:</label>
-                                <Form.Control required className="inputText" placeholder="Minimum 8 characters" type="password" name="password" value={formData.password} onChange={handleChange} />
-                                <PassOpenEye/>
+                                <label style={{ paddingRight: "10px", paddingLeft:"16px" }}>CREATE A PASSWORD:</label>
+                                <Form.Control required className="inputText" placeholder="Minimum 8 characters" type={revealText ? "text" : "password"} id="password" name="password" value={formData.password} onChange={handleChange}/>
+                                {revealText ? (<i class="bi bi-eye-slash" onClick={handleTextReveal} id="togglePassword"></i>) : (<i class="bi bi-eye" onClick={handleTextReveal} id="togglePassword"></i>)}
+                                {/* <PassOpenEye id="togglePassword" onClick={handleTextReveal} /> */}
                             </div>
                         </Col>
                     </Row>
