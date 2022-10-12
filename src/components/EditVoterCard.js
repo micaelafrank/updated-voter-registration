@@ -43,13 +43,13 @@ function EditVoterCard({ id, count, canEdit, isActive, address1, address2, age, 
                         <EditVoterLN id={id} lastName={lastName} />
                     </div>
                     {/* <EditVoterFN id={id} firstName={firstName} /> <EditVoterLN lastName={lastName} /> */}
-                    <p style={{ lineHeight: "0" }}>{age} years old</p>
-                    <p style={{ textAlign: "center", alignItems: "center" }}><span style={{ fontWeight: "bold" }}>VOTER SERIAL NUMBER (VSN): </span>{generate(6)}</p>
-                    <p style={{ alignItems: "left" }}><span style={{ fontWeight: "bold" }}>PARTY: </span>{party ? party.party_name : 'Neutral'}</p>
-                    <p style={{ fontSize: "13px", color: isActive ? "black" : "red" }}><span style={{ fontWeight: "bold" }}>VOTER STATUS: </span>{isActive ? "ACTIVE" : "INACTIVE"}</p>
-                    <p>RESIDENTIAL ADDRESS: {address1}, {address2} {postalCode}</p>
-                    <p><a href="https://findmypollsite.vote.nyc/?hn=&sn=&zip=">Find My Pollsite</a></p>
-                    <button style={{marginTop:"5px", marginBottom:"20px"}} onClick={handleDelete}>Delete My Voter Registration</button>
+                    <p style={{ lineHeight: "0", fontSize:"16px" }}>{age} years old</p>
+                    <p style={{ textAlign: "center", fontSize: "16px", alignItems: "center" }}><span style={{ fontWeight: "bold" }}>VOTER SERIAL NUMBER (VSN): </span>{generate(6)}</p>
+                    <p style={{ alignItems: "left", fontSize: "16px" }}><span style={{ fontWeight: "bold" }}>PARTY: </span>{party ? party.party_name : 'Neutral'}</p>
+                    <p style={{ fontSize: "16px", color: isActive ? "black" : "red" }}><span style={{ fontWeight: "bold" }}>VOTER STATUS: </span>{isActive ? "ACTIVE" : "INACTIVE"}</p>
+                    <p style={{ fontSize: "16px" }}>RESIDENTIAL ADDRESS: {address1}, {address2} {postalCode}</p>
+                    <p style={{ fontSize: "16px" }}><a href="https://findmypollsite.vote.nyc/?hn=&sn=&zip=">Find My Pollsite</a></p>
+                    <button id="deleteRegBtn" onClick={handleDelete}>DELETE MY VOTING RECORD</button>
                 </div>
             </div> 
         </>
