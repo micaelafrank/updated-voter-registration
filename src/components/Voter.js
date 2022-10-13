@@ -16,7 +16,9 @@ function Voter({ id, isActive, address1, address2, isFiltering, age, search, fir
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const initial = firstName[0];
+    const initial = firstName.charAt(0);
+
+    // const initial = firstName.slice(0, 0);
     const shortName = `${initial}. ${lastName}`;
     const fullName = `${firstName} ${lastName}`;
 

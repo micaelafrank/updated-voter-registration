@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Voter from "./Voter";
 
-function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, searchedNames, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
+function VoterList({ searchedNames, count, isFiltering, handleSearchClear, isSearching, voters, setVoters, deleteVoter, zipSearch, firstNameSearch, lastNameSearch}) {
 
   const listOfVoters = voters.map((voter) => (
       <Voter 
@@ -13,13 +13,14 @@ function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, 
       voters={voters}
       isActive={voter.isActive}
       setVoters={setVoters}
-      searchedNames={searchedNames}
-      count={count}
+      // searchedNames={searchedNames}
       address1={voter.address1}
       address2={voter.address2}
       // setSearch={setSearch}
-      party={voter.party}
+      // party={voter.party}
+      party={voter.party_id}
       password={voter.password}
+      count={count}
       postalCode={voter.postalCode}
       // handleSearch={setUserSearch}
       deleteVoter={deleteVoter}
@@ -32,6 +33,16 @@ function VoterList({ handleSearchSubmit, isFiltering, count, handleSearchClear, 
       />
     ))
   
+    // const searchedNames = listOfVoters.filter((voter) => {
+    //   if ((voter.firstName === firstNameSearch) && (voter.lastName === lastNameSearch) && (voter.postalCode.toString() === zipSearch)){
+    //     count = true;
+    //   } else{
+    //     count = false;
+    //   }
+    //   return count;
+    // });
+
+
     return (
       <React.Fragment>
         <h1 className="formHeading4" style={{padding:"50px 0 30px 0"}}>REGISTERED VOTERS</h1>

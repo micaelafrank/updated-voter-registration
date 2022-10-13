@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, setLastNameSearch, setZipSearch, handleSearchClear, handleSearchSubmit }) {
+function Search({ setFirstNameSearch, voters, searchedNames, isFiltering, setIsFiltering, isSearching, setLastNameSearch, setZipSearch, handleSearchClear, handleSearchSubmit }) {
   // const [formData, setFormData] = useState({ firstNameSearch:"", lastNameSearch: "", zipSearch:"" });
   const [fnSearch, setFNSearch] = useState("");
   const [lnSearch, setLNSearch] = useState("");
@@ -22,7 +22,8 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
     setBirthday(e.target.value);
   }
 
-  function handleSearch(){
+  function handleSearch(e){
+    e.preventDefault();
     setIsFiltering(true);
     console.log(`Filter results: ${isFiltering}`);
   }

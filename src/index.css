@@ -209,10 +209,12 @@ body.modal-open {
 .form-label{
   /* width: 200px; */
   text-align: left;
+  justify-content: center;
+  align-items: center;
 }
 
 label.signInStyle{
-  font-size: 15px;
+  font-size: 14px;
   width: 30%;
 }
 
@@ -342,7 +344,16 @@ input[placeholder]{
 
 select{
   font-size: 20px;
-  padding: 5px;
+}
+
+#colorChange{
+  color: gray;
+}
+
+#selectedParty.form-select{
+  font-size: 14px;
+  width: 240px;
+  padding: 8px 10px;
 }
 
 #submit{
@@ -354,9 +365,11 @@ select{
   font-size: 14px;
   height: 45px;
   padding: 15px 25px;
-  width: 350px;
+  width: 320px;
   text-align: left;
   padding-left: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 #registerForm input,
@@ -380,11 +393,17 @@ select{
 
 #zip, #bday{
   width: 60%;
+  color: gray;
 } 
+
+#party-item{
+  padding: 10px 50px;
+}
+
 
 #age{
   color: gray;
-  width: 75%;
+  width: 12em;
   justify-content: flex-end;
 }
 
