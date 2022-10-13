@@ -99,8 +99,8 @@ function Search({ setFirstNameSearch, isFiltering, setIsFiltering, isSearching, 
             onChange={(e) => setZCSearch(e.target.value)}
             // onChange={(e) => setPostalCode(e.target.value)}
           />
-          <SubmitButton className="search-btn" onClick={handleSearch} />
-          <button className="search-btn" style={{ fontFamily: "monospace"}} onClick={clearSearch}>Clear Search</button>
+          <SubmitButton id="search-btn1" className="search-btn" onClick={handleSearch} />
+          <button id="search-btn2" className="search-btn" style={{ fontFamily: "monospace"}} onClick={clearSearch}>Clear Search</button>
         </div>
       </form>
     </div>

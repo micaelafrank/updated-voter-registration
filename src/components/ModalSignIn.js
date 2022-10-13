@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import EditVoterCard from './EditVoterCard';
+import { FaExclamationTriangle } from "react-icons/fa";
 
 
 function ModalSignIn({ show, validated, handleValidation, setValidated, count, age, address1, handleCount, address2, id, postalCode, party, isActive, setShow, lastName, firstName, password, handleClose, handleShow }) {
@@ -178,7 +179,13 @@ function ModalSignIn({ show, validated, handleValidation, setValidated, count, a
                     <Modal.Title className="modal-title2">
                         To make any changes to your registration record, sign in using the password connected to your account.
                     </Modal.Title>
-                    {errorMessages ? <p className="errorMessage" style={{ color: "red" }}>{errorMessages}</p> : null}
+                    {errorMessages ? 
+                        (<p className="errorMessage" style={{ color: "red" }}>
+                            <div className="errorMessageContainer" style={{display:"flex", fontFamily:"helvetica", letterSpacing:"2", fontSize:"16px", flexDirection:"row", textAlign:"center", justifyContent:"center"}}>
+                                <FaExclamationTriangle className="fa-solid fa-triangle-exclamation fa-beat-fade" style={{marginRight:"10px"}} />
+                                {errorMessages}
+                            </div>
+                        </p>) : null}
                 </Modal.Header>
                 <Modal.Body className="modal-content">
                     {/* {errorMessages ? <Form.Label className="errorMessage" style={{ color: "red" }}>{errorMessages}</Form.Label> : null} */}

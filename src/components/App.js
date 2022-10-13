@@ -12,10 +12,17 @@ import NewForm from './NewForm'
 import EditVoterCard from './EditVoterCard'
 
 function App(){
+  const [voters, setVoters] = useState([])
   // const [user, setUser] = useState(null);
   const [candidates, setCandidates] = useState([])
   // const [search, setSearch] = useState("");
 
+    useEffect(() => {
+      fetch("http://localhost:9292/voters")
+        .then(res => res.json())
+        .then(voters => setVoters(voters))
+    }, [])
+    console.log(voters)
   // useEffect(() => {
   //   fetch("/me").then((r) => {
       // fetch("https://menoushbackend.netlify.app/me").then((r) => {
@@ -32,6 +39,10 @@ function App(){
   }, [])
   console.log(candidates)
 
+  function addNewVoter(newVoter){
+    const updatedList = [...voters, newVoter]
+    setVoters(updatedList)
+  }
   // function deleteVoter(id){
   //   const updatedList = voters.filter((voter) => voter.id !== id);
   //   setVoters(updatedList);
@@ -44,10 +55,10 @@ function App(){
         <Route path="/" element={<Home />} />
       <Route element={<WithNav />}>
           <Route className="hidden" path="/home" element={<Home />} />
-          <Route path="/voters" element={<VoterPage />} />
+          <Route path="/voters" element={<VoterPage voters={voters} setVoters={setVoters} />} />
           <Route path="/candidates" element={<CandidateList candidates={candidates} />} />
           {/* <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} /> */}
-          <Route path="/register" element={<NewForm />} />
+          <Route path="/register" element={<NewForm addNewVoter={addNewVoter} />} />
           {/* <Route path="/modalsignin" element={<ModalSignIn />} /> */}
           <Route path="/voters/editvoter" element={<EditVoterCard />} />
           {/* <Route path="*">

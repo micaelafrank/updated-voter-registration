@@ -3,21 +3,21 @@ import VoterList from "./VoterList";
 // import GridColSizesExample from "./GridColSizesExample";
 import Search from "./Search";
 
-function VoterPage() {
+function VoterPage({ voters, setVoters }) {
     const [firstNameSearch, setFirstNameSearch] = useState("")
     const [lastNameSearch, setLastNameSearch] = useState("")
     const [zipSearch, setZipSearch] = useState("")
     const [isSearching, setIsSearching] = useState(false);
     const [isFiltering, setIsFiltering] = useState(false);
     const [error, setError] = useState("");
-    const [voters, setVoters] = useState([])
+    // const [voters, setVoters] = useState([])
 
-    useEffect(() => {
-        fetch("http://localhost:9292/voters")
-            .then(res => res.json())
-            .then(voters => setVoters(voters))
-    }, [])
-    console.log(voters)
+    // useEffect(() => {
+    //     fetch("http://localhost:9292/voters")
+    //         .then(res => res.json())
+    //         .then(voters => setVoters(voters))
+    // }, [])
+    // console.log(voters)
 
     // function addNewVoter(newVoter) {
     //     const updatedList = [...voters, newVoter];

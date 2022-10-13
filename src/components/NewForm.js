@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 function NewForm({ addNewVoter }) {
     const [revealText, setRevealText] = useState(false);
+    const [inputColor, setInputColor] = useState(false);
     const [formData, setFormData] = useState(
         {
             name: "",
@@ -16,11 +17,13 @@ function NewForm({ addNewVoter }) {
             age: 18,
             party: "",
             password: "",
+            isActive: true,
         }
     )
     // const history = useHistory();
 
     function handleChange(e) {
+        setInputColor(true);
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
@@ -79,41 +82,57 @@ function NewForm({ addNewVoter }) {
                     <Row style={{display:"flex", flexDirection:"row"}}>
                         <Col xs={7}>
                             <label style={{paddingRight:"10px"}}>FIRST NAME:</label>
-                            <Form.Control required className="inputText" placeholder="First Name" name="name" value={formData.first} onChange={handleChange} />
+                            <Form.Control required 
+                            style={inputColor ? { color: "black" } : { color: "gray" }}
+                            className="inputText" placeholder="First Name" name="name" value={formData.first} onChange={handleChange} />
                         </Col>
                         <Col xs={7}>
                             <label style={{ paddingRight: "10px", paddingLeft:"16px" }}>LAST NAME:</label>
-                            <Form.Control required className="inputText" placeholder="Last Name" name="name" value={formData.last} onChange={handleChange} />
+                            <Form.Control required 
+                            style={inputColor ? { color: "black" } : { color: "gray" }}
+                            className="inputText" placeholder="Last Name" name="name" value={formData.last} onChange={handleChange} />
                         </Col>
                     </Row>
                     <Row style={{ display: "flex", flexDirection: "row", alignItems:"center" }}>
                         <Col>
                             <label style={{paddingRight: "10px"}}>ADDRESS 1:</label>
-                            <Form.Control id="add1" required className="inputText" placeholder="Street address" name="address1" value={formData.address1} onChange={handleChange} />
+                            <Form.Control id="add1" 
+                            style={inputColor ? { color: "black" } : { color: "gray" }}
+                            required className="inputText" placeholder="Street address" name="address1" value={formData.address1} onChange={handleChange} />
                         </Col>
                         <Col style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                            <label style={{ paddingRight: "10px", paddingLeft: "16px" }}>ADDRESS 2 (OPTIONAL):</label>
-                            <Form.Control id="add2" className="inputText" placeholder="Apt/Floor" name="address2" value={formData.address2} onChange={handleChange} />
+                            <label style={{ paddingRight: "10px", paddingLeft: "16px" }}>ADDRESS 2:</label>
+                            <Form.Control id="add2" 
+                            style={inputColor ? { color: "black" } : { color: "gray" }}
+                            className="inputText" placeholder="Apt/Floor" name="address2" value={formData.address2} onChange={handleChange} />
                         </Col>
                     </Row>
                     <Row style={{ display: "flex", flexDirection: "row", alignItems:"center" }}>
                         <Col>
                             <label style={{ paddingRight: "10px" }}>POSTAL CODE:</label>
-                            <Form.Control className="inputText" id="zip" placeholder="Postal Code" name="postalCode" value={formData.postalCode} onChange={handleChange} />
+                            <Form.Control 
+                            style={inputColor ? { color: "black" } : { color: "gray" }} required
+                            className="inputText" id="zip" placeholder="Postal Code" name="postalCode" value={formData.postalCode} onChange={handleChange} />
                         </Col>
-                        <Col>
+                        <Col style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                             <label style={{ paddingRight: "10px", paddingLeft: "16px" }}>BIRTHDAY:</label>
-                            <Form.Control id="bday" className="inputText" placeholder="MM/DD/YYYY" />
+                            <Form.Control 
+                            style={inputColor ? { color: "black" } : { color: "gray" }}
+                            id="bday" type="date" className="inputText" 
+                            placeholder="MM/DD/YYYY" />
                         </Col>
                         <Col>
                             <label style={{ paddingRight: "10px", paddingLeft: "16px" }}>AGE:</label>
-                            <Form.Control id="age" className="inputText" placeholder="Age" name="age" value={formData.age} onChange={handleChange} />
+                            <Form.Control id="age" 
+                            style={inputColor ? { color: "black" } : { color: "gray" }} 
+                            required
+                            className="inputText" name="age" min="18" max="100" value={formData.age} onChange={handleChange} />
                         </Col>
                     </Row>
-                    <Row style={{ display: "flex", flexDirection: "row", alignItems:"center" }}>
-                        <Form.Group as={Col} controlId="formGridState" style={{ flexDirection: "row", alignItems: "center" }}>
+                    <Row style={{ display: "flex", alignItems:"center", justifyContent:"center" }}>
+                        <Form.Group as={Col} controlId="formGridState" style={{ display:"flex", flexDirection:"row", justifyContent:"center", alignItems: "center" }}>
                             <Form.Label style={{ paddingRight: "10px"}}>CHOOSE A PARTY:</Form.Label>
-                            <Form.Select id="partyOptions" required defaultValue={'DEFAULT'} value={formData.party_name} style={{height:"30px"}} onChange={handleChange}>
+                            <Form.Select id="partyOptions" required defaultValue={'DEFAULT'} value={formData.party_name} style={{height:"30px", justifyContent:"center", alignItems:"center"}} onChange={handleChange}>
                                 <option value="DEFAULT">Choose one</option>
                                 <option>Democrat Party</option>
                                 <option>Green Party</option>
@@ -124,8 +143,10 @@ function NewForm({ addNewVoter }) {
                         </Form.Group>
                         <Col>
                             <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
-                                <label style={{ paddingRight: "10px", paddingLeft:"16px" }}>CREATE A PASSWORD:</label>
-                                <Form.Control required className="inputText" placeholder="Minimum 8 characters" type={revealText ? "text" : "password"} id="password" name="password" value={formData.password} onChange={handleChange}/>
+                                <label style={{ paddingRight: "10px", paddingLeft:"16px", marginLeft:"20px" }}>CREATE A PASSWORD:</label>
+                                <Form.Control
+                                style={inputColor ? { color: "black" } : { color: "gray" }} 
+                                required className="inputText" placeholder="Minimum 8 characters" type={revealText ? "text" : "password"} id="password" name="password" value={formData.password} onChange={handleChange}/>
                                 {revealText ? (<i class="bi bi-eye-slash" onClick={handleTextReveal} id="togglePassword"></i>) : (<i class="bi bi-eye" onClick={handleTextReveal} id="togglePassword"></i>)}
                                 {/* <PassOpenEye id="togglePassword" onClick={handleTextReveal} /> */}
                             </div>
@@ -136,7 +157,7 @@ function NewForm({ addNewVoter }) {
                             <Form.Check style={{ display: "flex", flexDirection: "row", alignItems: "center", textAlign: "center", lineHeight: "1" }} required label="I agree that I am 18 years old or will be on the date of the election." />
                         </Col>
                     </Row>
-                    <Row>
+                    <Row id="checkboxRow">
                         <Col sm={{ span: 10, offset: 2 }} >
                             <Form.Check style={{ display: "flex", flexDirection: "row", alignItems: "center", textAlign: "center", lineHeight:"1" }} id="formCheck2" required label="I certify that the above information is true and correct." />
                         </Col>
