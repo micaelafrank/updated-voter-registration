@@ -12,8 +12,9 @@ import EditVoterCard from './EditVoterCard'
 
 
 function App(){
-  const [voters, setVoters] = useState([])
+  const [voters, setVoters] = useState({})
   const [parties, setParties] = useState([]);
+  const [change, setChange] = useState(false);
   // const [candidates, setCandidates] = useState([])
   // const [search, setSearch] = useState("");
 
@@ -21,7 +22,7 @@ function App(){
     useEffect(() => {
       fetch("http://localhost:9292/voters")
         .then(res => res.json())
-        .then(voters => { setVoters(voters) })
+        .then(voters => setVoters(voters))
     }, [])
     console.log(voters)
 
@@ -65,7 +66,7 @@ function App(){
         <Route path="/" element={<Home />} />
       <Route element={<WithNav />}>
           <Route className="hidden" path="/home" element={<Home />} />
-          <Route path="/voters" element={<VoterPage voters={voters} setVoters={setVoters} />} />
+          <Route path="/voters" element={<VoterPage change={change} setChange={setChange} />} />
           {/* <Route path="voters/search" element={<Search /> } /> */}
           {/* <Route path="/candidates" element={<CandidateList />} /> */}
           {/* <Route path="/register" element={<RegistrationForm addNewVoter={addNewVoter} />} /> */}

@@ -6,17 +6,18 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 
 
-function NewForm({ addNewVoter }) {
+function NewForm({ addNewVoter, voters, setVoters }) {
     const [revealText, setRevealText] = useState(false);
+    const [party, setParty] = useState("default")
     const [first, setFirst] = useState("");
     const [last, setLast] = useState("");
     const [age, setAge] = useState("");
     const [address1, setAddress1] = useState("");
     const [address2, setAddress2] = useState("");
     const [postalCode, setPostalCode] = useState("");
-    const [selectedParty, setSelectedParty] = useState("Choose One");
-    const [voterPassword, setVoterPassword] = useState("");
-    const [errors, setErrors] = useState([])
+    // const [selectedParty, setSelectedParty] = useState("Choose One");
+    const [password, setPassword] = useState("");
+    // const [errors, setErrors] = useState([])
     // const [filter, setFilter] = useState("Choose one");
     const [inputColor, setInputColor] = useState(false);
     const navigate = useNavigate();
@@ -36,18 +37,6 @@ function NewForm({ addNewVoter }) {
     // )
     // const history = useHistory();
 
-    const formData = new FormData();
-    formData.append('first', first);
-    formData.append('last', last);
-    formData.append('address1', address1);
-    formData.append('address2', address2);
-    formData.append('postalCode', postalCode);
-    formData.append('age', age);
-    // formData.append('party', selectedParty);
-    formData.append('party_name', selectedParty);
-    formData.append('voterPassword', voterPassword);
-    formData.append('isActive', true);
-
 
     function handleColor(){
         setInputColor(true);
@@ -64,43 +53,44 @@ function NewForm({ addNewVoter }) {
     // }
 
 
-
     function handleSubmit(e) {
+
         e.preventDefault();
-        setErrors([])
         fetch("http://localhost:9292/voters", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify({ 
+                first: first,
+                last: last, 
+                age: age, 
+                address1: address1,
+                party_id: party.id,
+                party: party,
+                postalCode: postalCode,
+                password: password
+             }),
         })
-        .then((r) => {
-            // setIsLoading(false);
-            if (r.ok) {
-                r.json().then(addNewVoter);
-            }
-            else {
-                r.json().then(console.log("There is an error in your form"));
-            }
-        });
-}
+        .then(res => res.json())
+        .then(addNewVoter);
+        navigate(`/voters`);
+    }
     //     .then(res => res.json())
     //     .then(newVoter => addNewVoter(newVoter))
     //     navigate("/voters")
     // }
 
-        // setFormData({ first: "", last: "", address1: "", address2: "", state: "", postalCode: "", age: 18, party: "", password: "" })
 
 
-    const togglePassword = document.querySelector("#togglePassword");
-    const password = document.querySelector("#password");
+    const togglePasswordInput = document.querySelector("#togglePasswordInput");
+    const passwordInput = document.querySelector("#passwordInput");
 
     function handleTextReveal(){
         handleColor();
         setRevealText((revealText) => !revealText)
-        const type = password.getAttribute("type") === "password" ? "text" : "password";
-        password.setAttribute("type", type);
+        const type = passwordInput.getAttribute("type") === "passwordInput" ? "text" : "passwordInput";
+        passwordInput.setAttribute("type", type);
 
         // toggle the icon
         // this.classList.toggle("bi-eye");
@@ -134,18 +124,23 @@ function NewForm({ addNewVoter }) {
                             <label style={{paddingRight:"10px"}}>FIRST NAME:</label>
                             <Form.Control required 
                             style={inputColor ? { color: "black" } : { color: "gray" }}
-                                className="inputText" placeholder="First Name" name="first" value={first} onChange={(e) => {
+                                className="inputText" placeholder="First Name" name="first" value={first} 
+                                // onChange={handleChange}
+                                onChange={(e) => {
                                 handleColor();
                                 setFirst(e.target.value)
-                                }} />
+                                }} 
+                            />
                         </Col>
                         <Col xs={7}>
                             <label style={{ paddingRight: "10px", paddingLeft:"16px" }}>LAST NAME:</label>
                             <Form.Control required 
                             style={inputColor ? { color: "black" } : { color: "gray" }}
-                            className="inputText" placeholder="Last Name" name="last" value={last} onChange={(e) => {
+                            className="inputText" placeholder="Last Name" name="last" value={last} 
+                            onChange={(e) => {
                             handleColor(); 
-                            setLast(e.target.value)}} />
+                            setLast(e.target.value)}} 
+                            />
                         </Col>
                     </Row>
                     <Row style={{ display: "flex", flexDirection: "row", alignItems:"center" }}>
@@ -153,19 +148,23 @@ function NewForm({ addNewVoter }) {
                             <label style={{paddingRight: "10px"}}>ADDRESS 1:</label>
                             <Form.Control id="add1" 
                             style={inputColor ? { color: "black" } : { color: "gray" }}
-                                required className="inputText" placeholder="Street address" name="address1" value={address1} onChange={(e) => {
+                                required className="inputText" placeholder="Street address" name="address1" value={address1} 
+                                onChange={(e) => {
                                 handleColor();
                                 setAddress1(e.target.value)
-                                }} />
+                                }}
+                                 />
                         </Col>
                         <Col style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                             <label style={{ paddingRight: "10px", paddingLeft: "16px" }}>ADDRESS 2:</label>
                             <Form.Control id="add2" 
                             style={inputColor ? { color: "black" } : { color: "gray" }}
-                            className="inputText" placeholder="Apt/Floor" name="address2" value={address2} onChange={(e) => {
-                                handleColor();
-                                setAddress2(e.target.value)
-                            }} />
+                            className="inputText" placeholder="Apt/Floor" name="address2" value={address2}
+                            onChange={(e) => {
+                            handleColor();
+                            setAddress2(e.target.value)
+                            }} 
+                            />
                         </Col>
                     </Row>
                     <Row style={{ display: "flex", flexDirection: "row", alignItems:"center" }}>
@@ -173,10 +172,12 @@ function NewForm({ addNewVoter }) {
                             <label style={{ paddingRight: "10px" }}>POSTAL CODE:</label>
                             <Form.Control 
                             style={inputColor ? { color: "black" } : { color: "gray" }} required
-                            className="inputText" id="zip" placeholder="Postal Code" name="postalCode" value={postalCode} onChange={(e) => {
+                            className="inputText" id="zip" placeholder="Postal Code" name="postalCode" value={postalCode} 
+                            onChange={(e) => {
                                 handleColor();
                                 setPostalCode(e.target.value)
-                            }} />
+                            }} 
+                            />
                         </Col>
                         <Col style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                             <label style={{ paddingRight: "10px", paddingLeft: "16px" }}>BIRTHDAY:</label>
@@ -191,28 +192,33 @@ function NewForm({ addNewVoter }) {
                             <Form.Control id="age" 
                             style={inputColor ? { color: "black" } : { color: "gray" }}
                             required
-                            className="inputText" placeholder="18" name="age" min="18" max="100" value={age} onChange={(e) => {
+                            className="inputText" placeholder="18" name="age" min="18" max="100" value={age} 
+                            onChange={(e) => {
                             handleColor();
-                            setAge(e.target.value)}} />
+                            setAge(e.target.value)}} 
+                            />
                         </Col>
                     </Row>
                     <Row style={{ display: "flex", alignItems:"center", justifyContent:"center" }}>
-                        <Form.Group as={Col} controlId="formGridState" style={{ display:"flex", flexDirection:"row", justifyContent:"center", alignItems: "center" }}>
+                        <Form.Group as={Col} id="formGridState" style={{ display:"flex", flexDirection:"row", justifyContent:"center", alignItems: "center" }}>
                             <Form.Label id="party-options-label" style={{ paddingRight: "10px"}}>CHOOSE A PARTY:</Form.Label>
                             <Form.Select
                                 style={{ height: "35px", justifyContent: "center", alignItems: "center", fontSize: "14px", fontFamily: "monospace" }}
                                 id="selectedParty"
                                 required
-                                value={selectedParty}
+                                name="party"
+                                value={party}
                                 label="Choose One"
-                                onChange={(e) => setSelectedParty(e.target.value)}
+                                defaultValue={'DEFAULT'} 
+                                // onChange={handleChange}
+                                onChange={(e) => setParty(e.target.value)}
                             >
-                                    <option id="colorChange" value="chooseOne">Choose One</option>
+                                    <option id="colorChange" value="DEFAULT">Choose One</option>
                                     <option value="democrat">Democratic Party</option>
                                     <option value="green">Green Party</option>
                                     <option value="independent">Independent Party</option>
                                     <option value="republican">Republican Party</option>
-                                    <option value="workingFamilies">Working Families Party</option>
+                                    <option value="working_families">Working Families Party</option>
                             </Form.Select>
                         </Form.Group>
                         <Col>
@@ -220,8 +226,10 @@ function NewForm({ addNewVoter }) {
                                 <label style={{ paddingRight: "10px", paddingLeft:"16px", marginLeft:"20px" }}>CREATE A PASSWORD:</label>
                                 <Form.Control
                                 style={inputColor ? { color: "black" } : { color: "gray" }} 
-                                required className="inputText" placeholder="Minimum 8 characters" type={revealText ? "text" : "password"} id="password" name="password" value={voterPassword} onChange={(e) => setVoterPassword(e.target.value)}/>
-                                {revealText ? (<i className="bi bi-eye-slash" onClick={handleTextReveal} id="togglePassword"></i>) : (<i className="bi bi-eye" onClick={handleTextReveal} id="togglePassword"></i>)}
+                                required className="inputText" placeholder="Minimum 8 characters" type={revealText ? "text" : "passwordInput"} id="password" name="password" value={password} 
+                                onChange={(e) => setPassword(e.target.value)}
+                                />
+                                {revealText ? (<i className="bi bi-eye-slash" onClick={handleTextReveal} id="togglePasswordInput"></i>) : (<i className="bi bi-eye" onClick={handleTextReveal} id="togglePasswordInput"></i>)}
                                 {/* <PassOpenEye id="togglePassword" onClick={handleTextReveal} /> */}
                             </div>
                         </Col>

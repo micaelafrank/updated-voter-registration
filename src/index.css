@@ -1022,7 +1022,7 @@ label{
 }
 
 
-#togglePassword, #togglePassword2{
+#togglePasswordInput, #togglePassword2Input{
   /* height: 32;
   width: 32; */
   margin-left: 10px;
