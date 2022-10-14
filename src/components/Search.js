@@ -1,49 +1,78 @@
 import React, {useState} from "react";
 
-function Search({ setFirstNameSearch, voters, searchedNames, isFiltering, setIsFiltering, isSearching, setLastNameSearch, setZipSearch, handleSearchClear, handleSearchSubmit }) {
-  // const [formData, setFormData] = useState({ firstNameSearch:"", lastNameSearch: "", zipSearch:"" });
-  const [fnSearch, setFNSearch] = useState("");
-  const [lnSearch, setLNSearch] = useState("");
-  const [zcSearch, setZCSearch] = useState("");
-  const [birthdaySearch, setBirthday] = useState("");
+function Search({ handleSearchBoxInput, setFirstNameSearch, voters, searchedNames, isFiltering, setIsFiltering, isSearching, setLastNameSearch, setZipSearch, handleSearchClear, handleSearchSubmit }) {
+  const [formData, setFormData] = useState({ 
+    firstNameSearch: "", 
+    lastNameSearch: "", 
+    zipSearch: "" 
+  });
+
+  // const [fnSearch, setFNSearch] = useState("");
+  // const [lnSearch, setLNSearch] = useState("");
+  // const [zcSearch, setZCSearch] = useState("");
+  // const [birthdaySearch, setBirthday] = useState("");
   const [inputColor, setInputColor] = useState(false);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setFirstNameSearch(fnSearch);
-    setLastNameSearch(lnSearch);
-    setZipSearch(zcSearch);
-    setBirthday(birthdaySearch);
-    handleSearchSubmit();
+
+  function handleChange(e) {
+      setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
+  function handleSubmit(e){
+    e.preventDefault();
+    fetch(`http://localhost:9292/voters`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+    })
+      .then((r) => r.json())
+      .then(handleSearchBoxInput)
+  }
+
+
+
+//   function handleSubmit(e) {
+//     e.preventDefault();
+//     console.log(formData)
+// }
+  //   e.preventDefault();
+    // setFirstNameSearch(fnSearch);
+    // setLastNameSearch(lnSearch);
+    // setZipSearch(zcSearch);
+    // setBirthday(birthdaySearch);
+  // }
   
-  function handleBirthday(e){
+  function handleBirthday(){
     setInputColor(true);
-    setBirthday(e.target.value);
+    // setBirthday(e.target.value);
   }
 
   function handleSearch(e){
     e.preventDefault();
-    setIsFiltering(true);
-    console.log(`Filter results: ${isFiltering}`);
+    console.log(formData)
+    // setIsFiltering(true);
+    // console.log(`Filter results: ${isFiltering}`);
   }
 
   function clearSearch(){
-    setFNSearch("");
-    setLNSearch("");
-    setZCSearch("");
-    setBirthday("");
+    setFormData({ firstNameSearch: "", lastNameSearch: "", zipSearch: "" })
+    // setFNSearch("");
+    // setLNSearch("");
+    // setZCSearch("");
+    // setBirthday("");
     handleSearchClear();
     setIsFiltering(false);
   }
 
-  function SubmitButton() {
-    if (fnSearch && lnSearch && (zcSearch.length === 5)) {
-      return <button type="submit">Submit</button>
-    } else {
-      return <button type="submit" disabled>Submit</button>
-    };
-  };
+  // function SubmitButton() {
+  //   if (fnSearch && lnSearch && (zcSearch.length === 5)) {
+  //     return <button type="submit">Submit</button>
+  //   } else {
+  //     return <button type="submit" disabled>Submit</button>
+  //   };
+  // };
 
   return (
     <div className="searchBarContainer">
@@ -58,8 +87,9 @@ function Search({ setFirstNameSearch, voters, searchedNames, isFiltering, setIsF
             id="firstNameSearch"
             name="firstNameSearch"
             placeholder="First name"
-            value={fnSearch}
-            onChange={(e) => setFNSearch(e.target.value)}
+            value={formData.firstNameSearch}
+            onChange={handleChange}
+            // onChange={(e) => setFNSearch(e.target.value)}
             // onChange={(e) => setFirstName(e.target.value)}
           />
           <input
@@ -69,8 +99,9 @@ function Search({ setFirstNameSearch, voters, searchedNames, isFiltering, setIsF
             id="lastNameSearch"
             name="lastNameSearch"
             placeholder="Last name"
-            value={lnSearch}
-            onChange={(e) => setLNSearch(e.target.value)}
+            value={formData.lastNameSearch}
+            onChange={handleChange}
+            // onChange={(e) => setLNSearch(e.target.value)}
             // onChange={(e) => setLastName(e.target.value)}
           />
         {/* </div>
@@ -79,7 +110,6 @@ function Search({ setFirstNameSearch, voters, searchedNames, isFiltering, setIsF
             width="20%"
             required 
             type="date"
-            value={birthdaySearch}
             style={inputColor ? { color: "black" } : { color: "gray" }}
             name="birthdaySearch"
             id="birthdaySearch"
@@ -96,11 +126,12 @@ function Search({ setFirstNameSearch, voters, searchedNames, isFiltering, setIsF
             id="zipSearch"
             name="zipSearch"
             placeholder="Postal Code"
-            value={zcSearch}
-            onChange={(e) => setZCSearch(e.target.value)}
+            onChange={handleChange}
+            value={formData.zipSearch}
+            // onChange={(e) => setZCSearch(e.target.value)}
             // onChange={(e) => setPostalCode(e.target.value)}
           />
-          <SubmitButton id="search-btn1" className="search-btn" onClick={handleSearch} />
+          <button value="submit" id="search-btn1" className="search-btn" onClick={handleSearch}>Submit</button>
           <button id="search-btn2" className="search-btn" style={{ fontFamily: "monospace"}} onClick={clearSearch}>Clear Search</button>
         </div>
       </form>

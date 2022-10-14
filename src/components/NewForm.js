@@ -44,7 +44,7 @@ function NewForm({ addNewVoter }) {
     formData.append('postalCode', postalCode);
     formData.append('age', age);
     // formData.append('party', selectedParty);
-    formData.append('party_id', selectedParty.id);
+    formData.append('party_name', selectedParty);
     formData.append('voterPassword', voterPassword);
     formData.append('isActive', true);
 
